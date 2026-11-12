@@ -1,0 +1,3042 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="handbook">
+  <title>Guia Prático de Escrita de Monografia , Prof.ª Suzana Mota</title>
+  
+  <!-- Fontes Google: Public Sans para texto/títulos e JetBrains Mono para código/rótulos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Biblioteca de Ícones Lucide Pinned CDN -->
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Paleta Verde Acadêmica & Institucional */
+      --primary: #00703b;
+      --primary-hover: #00562d;
+      --primary-dark: #003e20;
+      --on-primary: #ffffff;
+      
+      --primary-container: #e8f5e9;
+      --on-primary-container: #003319;
+      --primary-soft: #f0fdf4;
+      
+      --secondary: #164e63;
+      --secondary-container: #e0f2fe;
+      --on-secondary-container: #082f49;
+      
+      --accent-purple: #5b21b6;
+      --accent-purple-bg: #f3e8ff;
+      --accent-purple-border: #d8b4fe;
+
+      --warning: #b45309;
+      --warning-container: #fef3c7;
+      --on-warning-container: #78350f;
+      --error: #b91c1c;
+      --error-container: #fee2e2;
+      --on-error-container: #7f1d1d;
+
+      /* Superfícies e Fundo */
+      --background: #ffffff;
+      --surface-container-low: #f9fbf9;
+      --surface-container: #f0f4f1;
+      --surface-container-high: #e2eae3;
+      --surface-card: #ffffff;
+
+      /* Tinta e Tipografia */
+      --on-surface: #0f1715;
+      --on-surface-variant: #4a5550;
+      --on-surface-muted: #6b7772;
+
+      /* Réguas e Bordas */
+      --outline: #0f1715;
+      --outline-variant: #cbd5ce;
+      --outline-light: #e2e8e4;
+
+      /* Tipografia */
+      --font-headline: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-label: 'JetBrains Mono', monospace;
+
+      /* Raios de Arredamento */
+      --rounded-sm: 4px;
+      --rounded: 6px;
+      --rounded-lg: 10px;
+      --rounded-full: 9999px;
+
+      /* Efeitos de Estilo Handbook */
+      --top-index-rule: 6px solid var(--primary);
+      --inset-rule: 5px solid var(--primary);
+      --button-ground: 0 3px 0 var(--primary-dark);
+      --button-ground-secondary: 0 2px 0 #9ca3af;
+      --focus-yellow: #ffdd00;
+      --focus-ring: 3px solid var(--focus-yellow);
+
+      /* Escala de Espaçamento */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.25rem;
+      --space-2xl: 3.5rem;
+      --space-3xl: 5rem;
+
+      /* Escala Tipográfica */
+      --display-size: clamp(2rem, 1.5rem + 2.2vw, 3rem);
+      --headline-size: clamp(1.55rem, 1.2rem + 1.3vw, 2.1rem);
+      --section-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+      --subhead-size: clamp(1.05rem, 0.98rem + 0.3vw, 1.2rem);
+      --body-size: clamp(1rem, 0.95rem + 0.2vw, 1.08rem);
+      --label-size: 0.8125rem;
+
+      /* Transições */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-short: 180ms;
+      --dur-long: 320ms;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.68;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    /* Container Principal */
+    .app-layout {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      min-height: 100vh;
+      max-width: 1460px;
+      margin: 0 auto;
+    }
+
+    /* Sidebar de Navegação */
+    .sidebar {
+      background-color: var(--surface-container-low);
+      border-right: 1px solid var(--outline-light);
+      padding: var(--space-lg) var(--space-md);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .sidebar-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: var(--space-sm);
+    }
+
+    .badge-mentor {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--rounded-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .sidebar-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: var(--space-xs) 0 0 0;
+      line-height: 1.25;
+    }
+
+    .progress-widget {
+      background-color: var(--surface-card);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--surface-container);
+      border-radius: var(--rounded-full);
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary);
+      width: 0%;
+      transition: width var(--dur-long) var(--ease-out);
+    }
+
+    .missions-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .missions-nav a {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 7px 10px;
+      border-radius: var(--rounded);
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color var(--dur-short), color var(--dur-short);
+      border-left: 3px solid transparent;
+    }
+
+    .missions-nav a:hover {
+      background-color: var(--surface-container);
+      color: var(--primary);
+    }
+
+    .missions-nav a.active {
+      background-color: var(--primary-container);
+      color: var(--primary-dark);
+      border-left-color: var(--primary);
+      font-weight: 700;
+    }
+
+    .nav-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background-color: var(--surface-container-high);
+      color: var(--on-surface);
+      border-radius: var(--rounded-sm);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .missions-nav a.active .nav-step-num {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    /* Conteúdo Principal */
+    .book-content {
+      padding: var(--space-xl) var(--space-2xl);
+      max-width: 1020px;
+      min-width: 0;
+    }
+
+    /* Capa e Abertura */
+    .book-hero {
+      border-top: var(--top-index-rule);
+      background-color: var(--surface-card);
+      padding-top: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    .book-hero h1 {
+      font-size: var(--display-size);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md) 0;
+      letter-spacing: -0.02em;
+    }
+
+    .book-hero .lead {
+      font-size: var(--subhead-size);
+      color: var(--on-surface-variant);
+      max-width: 74ch;
+      margin-bottom: var(--space-lg);
+      font-weight: 400;
+    }
+
+    /* Carta Acolhedora da Prof. Suzana Mota */
+    .mentor-welcome-card {
+      background-color: var(--primary-container);
+      border-left: var(--inset-rule);
+      padding: var(--space-lg);
+      border-radius: 0 var(--rounded-lg) var(--rounded-lg) 0;
+      margin-bottom: var(--space-xl);
+    }
+
+    .mentor-welcome-card h3 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin: 0 0 var(--space-sm) 0;
+      color: var(--primary-dark);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    /* Espinha Dorsal (Missão Zero - Antes do Sumário) */
+    .spine-card {
+      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+      border: 2px solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+      box-shadow: 0 4px 14px rgba(0, 112, 59, 0.08);
+    }
+
+    .spine-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .spine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+
+    .spine-item {
+      background-color: #ffffff;
+      border: 1px solid var(--outline-variant);
+      border-top: 4px solid var(--primary);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+
+    .spine-item h4 {
+      margin: 0 0 6px 0;
+      font-size: 1rem;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spine-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Quadrados Separados de Preenchimento da Espinha Dorsal */
+    .spine-boxes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .spine-input-box {
+      background-color: #ffffff;
+      border: 2px solid #c084fc;
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(91, 33, 182, 0.05);
+    }
+
+    .spine-input-box-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f3e8ff;
+    }
+
+    .spine-step-badge {
+      background-color: var(--accent-purple);
+      color: #ffffff;
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--rounded-sm);
+    }
+
+    .spine-input-box-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--on-surface);
+      margin: 0;
+    }
+
+    .spine-input-hint {
+      font-size: 0.82rem;
+      color: var(--on-surface-variant);
+      margin: 0 0 8px 0;
+      line-height: 1.45;
+    }
+
+    .spine-input-box textarea {
+      width: 100%;
+      min-height: 105px;
+      padding: 10px;
+      font-family: var(--font-body);
+      font-size: 0.94rem;
+      line-height: 1.55;
+      border: 1.5px solid #d8b4fe;
+      border-radius: var(--rounded);
+      background-color: #fcfaff;
+      color: var(--on-surface);
+      resize: vertical;
+      flex-grow: 1;
+    }
+
+    .spine-input-box textarea:focus {
+      outline: var(--focus-ring);
+      border-color: var(--accent-purple);
+      background-color: #ffffff;
+    }
+
+    /* Box de Alerta Ético IA no Topo */
+    .ai-ethics-banner {
+      background-color: var(--accent-purple-bg);
+      border: 1px solid var(--accent-purple-border);
+      border-left: 5px solid var(--accent-purple);
+      border-radius: 0 var(--rounded-lg) var(--rounded-lg) 0;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .ai-ethics-banner h3 {
+      margin: 0 0 var(--space-xs) 0;
+      color: var(--accent-purple);
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Seções das Missões */
+    .mission-section {
+      background-color: var(--surface-card);
+      border-top: 2px solid var(--outline-light);
+      padding-top: var(--space-2xl);
+      margin-bottom: var(--space-3xl);
+      scroll-margin-top: var(--space-xl);
+    }
+
+    .mission-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .mission-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      background-color: var(--primary);
+      color: var(--on-primary);
+      font-family: var(--font-label);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--rounded-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .mission-header h2 {
+      font-size: var(--headline-size);
+      font-weight: 800;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+      line-height: 1.2;
+    }
+
+    .mission-subtitle {
+      font-size: var(--subhead-size);
+      color: var(--primary);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .mission-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .pillar-title {
+      font-size: var(--section-size);
+      font-weight: 800;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pillar-title .pillar-icon {
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* Glossário Inline / Explicação de Termos */
+    .term-explain {
+      background-color: var(--secondary-container);
+      color: var(--on-secondary-container);
+      padding: 1px 6px;
+      border-radius: var(--rounded-sm);
+      font-size: 0.92em;
+      font-weight: 500;
+    }
+
+    .concept-callout {
+      background-color: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-left: 4px solid var(--secondary);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+      font-size: 0.94rem;
+    }
+
+    .concept-callout strong {
+      color: var(--secondary);
+    }
+
+    /* Box de Exemplo Prático */
+    .tech-example-box {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-left: 5px solid var(--primary);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-lg);
+      margin: var(--space-md) 0;
+    }
+
+    .tech-example-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background-color: var(--primary-container);
+      padding: 2px 8px;
+      border-radius: var(--rounded-sm);
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+    }
+
+    .tech-example-box h4 {
+      margin: 0 0 var(--space-xs) 0;
+      font-size: 1.1rem;
+      color: var(--on-surface);
+    }
+
+    /* Quadro de Erros Comuns */
+    .pitfalls-box {
+      background-color: #fff9f9;
+      border: 1px solid #fecaca;
+      border-left: 5px solid var(--error);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-md) 0;
+    }
+
+    .pitfalls-box h4 {
+      color: var(--error);
+      margin: 0 0 var(--space-sm) 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 1.05rem;
+    }
+
+    .pitfalls-box ul {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .pitfalls-box li {
+      margin-bottom: 6px;
+    }
+
+    /* Dica da Prof. Suzana */
+    .mentor-tip-box {
+      background-color: var(--primary-container);
+      border: 1px solid #bbf7d0;
+      border-left: 5px solid var(--primary);
+      border-radius: 0 var(--rounded) var(--rounded) 0;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-md) 0;
+    }
+
+    .mentor-tip-box h4 {
+      color: var(--primary-dark);
+      margin: 0 0 var(--space-xs) 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 1.05rem;
+    }
+
+    .mentor-tip-box p {
+      margin: 0;
+      color: var(--on-primary-container);
+    }
+
+    /* OFICINA DE ESCRITA DO ALUNO + PROMPT DE IA SINCRONIZADO */
+    .student-workshop-card {
+      background-color: #faf5ff;
+      border: 2px solid var(--accent-purple-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-md);
+    }
+
+    .workshop-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--accent-purple-border);
+      padding-bottom: var(--space-sm);
+    }
+
+    .workshop-header h4 {
+      margin: 0;
+      color: var(--accent-purple);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .live-sync-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #ede9fe;
+      color: var(--accent-purple);
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: var(--rounded-full);
+      border: 1px solid #c4b5fd;
+    }
+
+    .student-textarea {
+      width: 100%;
+      min-height: 135px;
+      padding: 12px;
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      line-height: 1.6;
+      border: 2px solid #d8b4fe;
+      border-radius: var(--rounded);
+      background-color: #ffffff;
+      color: var(--on-surface);
+      resize: vertical;
+      margin-bottom: var(--space-md);
+    }
+
+    .student-textarea:focus {
+      outline: var(--focus-ring);
+      border-color: var(--accent-purple);
+    }
+
+    .ai-prompt-box {
+      background-color: #1e1b2e;
+      color: #f3e8ff;
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      font-family: var(--font-label);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .ai-prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 1px solid #3b3556;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      color: #d8b4fe;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .prompt-dynamic-insert {
+      color: #86efac;
+      font-weight: 600;
+    }
+
+    /* Caixa de Código */
+    .code-box {
+      background-color: #0b1311;
+      color: #e2f0ea;
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      font-family: var(--font-label);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      overflow-x: auto;
+      margin: var(--space-md) 0;
+    }
+
+    .code-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1f332d;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      color: #8fa89e;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      background-color: #172d26;
+      color: #a7f3d0;
+      border: 1px solid #274b40;
+      border-radius: var(--rounded-sm);
+      padding: 4px 10px;
+      font-size: 0.74rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-label);
+      font-weight: 700;
+      transition: background-color var(--dur-short);
+    }
+
+    .copy-btn:hover {
+      background-color: #274b40;
+      color: #ffffff;
+    }
+
+    .copy-btn-purple {
+      background-color: #4c1d95;
+      color: #f3e8ff;
+      border: 1px solid #7c3aed;
+    }
+
+    .copy-btn-purple:hover {
+      background-color: #6d28d9;
+      color: #ffffff;
+    }
+
+    /* Checklist Interativo */
+    .mission-checklist-card {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-md);
+    }
+
+    .checklist-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0 0 var(--space-sm) 0;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .checklist-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.94rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checklist-checkbox {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Tabelas */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: var(--space-md) 0;
+    }
+
+    .tech-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+      text-align: left;
+    }
+
+    .tech-table th {
+      background-color: var(--surface-container-high);
+      color: var(--on-surface);
+      font-weight: 700;
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--primary);
+      font-family: var(--font-label);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .tech-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--outline-light);
+      color: var(--on-surface);
+      vertical-align: top;
+    }
+
+    .tech-table tr:hover {
+      background-color: var(--surface-container-low);
+    }
+
+    /* Botões */
+    .btn {
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: var(--rounded-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color var(--dur-short), transform var(--dur-short);
+      border: 0;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--button-ground);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      color: var(--on-primary);
+    }
+
+    .btn-primary:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      box-shadow: var(--button-ground-secondary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+
+    .btn-doc-export {
+      background-color: #1d4ed8;
+      color: #ffffff;
+      box-shadow: 0 3px 0 #1e3a8a;
+    }
+
+    .btn-doc-export:hover {
+      background-color: #1e40af;
+      color: #ffffff;
+    }
+
+    /* Diagramas SVG Responsivos e Sem Cortes */
+    .svg-diagram-card {
+      background-color: var(--surface-container-low);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .svg-diagram-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .svg-diagram-wrapper svg {
+      width: 100%;
+      max-width: 820px;
+      height: auto;
+      display: block;
+    }
+
+    .diagram-caption {
+      font-size: 0.85rem;
+      color: var(--on-surface-variant);
+      text-align: center;
+      margin-top: var(--space-sm);
+      font-family: var(--font-label);
+    }
+
+    /* Cards Interativos */
+    .interactive-card {
+      background-color: var(--surface-card);
+      border: 2px solid var(--primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      margin: var(--space-xl) 0;
+    }
+
+    .interactive-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      color: var(--primary-dark);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-md);
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: var(--on-surface);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      border: 2px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      background-color: var(--background);
+      color: var(--on-surface);
+    }
+
+    .form-control:focus {
+      outline: var(--focus-ring);
+      border-color: var(--primary);
+    }
+
+    .sus-question-row {
+      display: grid;
+      grid-template-columns: 1fr 165px;
+      gap: var(--space-sm);
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--outline-light);
+    }
+
+    .sus-question-text {
+      font-size: 0.9rem;
+    }
+
+    .sus-scale-select {
+      padding: 6px 8px;
+      font-size: 0.84rem;
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded-sm);
+      background-color: var(--background);
+    }
+
+    .sus-result-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background-color: var(--primary-container);
+      color: var(--primary-dark);
+      font-weight: 800;
+      border-radius: var(--rounded);
+      font-size: 1.25rem;
+      font-family: var(--font-label);
+    }
+
+    /* Seção Final de Exportação .DOC */
+    .export-doc-card {
+      background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+      border: 2px solid #1d4ed8;
+      border-radius: var(--rounded-lg);
+      padding: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+
+    /* Toast */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--primary-dark);
+      color: var(--on-primary);
+      padding: 12px 20px;
+      border-radius: var(--rounded);
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity var(--dur-short), transform var(--dur-short);
+      pointer-events: none;
+    }
+
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .app-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 2px solid var(--primary);
+      }
+      .book-content {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .sus-question-row {
+        grid-template-columns: 1fr;
+      }
+      .spine-boxes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .improved-text-label {
+      display: block;
+      margin: 14px 0 6px;
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+    .improved-textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 12px;
+      font: 0.96rem/1.6 var(--font-body);
+      border: 2px solid #86bda0;
+      border-radius: var(--rounded);
+      background: #f7fdf8;
+      color: var(--on-surface);
+      resize: vertical;
+    }
+    .improved-textarea:focus {
+      outline: var(--focus-ring);
+      border-color: var(--primary);
+      background: #fff;
+    }
+    .export-mode-select {
+      width: 100%;
+      max-width: 520px;
+      padding: 10px 12px;
+      border: 2px solid #93c5fd;
+      border-radius: var(--rounded);
+      background: #fff;
+      font: 600 0.95rem var(--font-body);
+      margin: 8px 0 14px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="app-layout">
+  
+  <!-- BARRA LATERAL FIXA DE NAVEGAÇÃO -->
+  <aside class="sidebar" aria-label="Navegação das Missões">
+    <div class="sidebar-header">
+      <span class="badge-mentor"><i data-lucide="heart-handshake" style="width: 14px; height: 14px;"></i> Prof.ª Suzana Mota</span>
+      <h2 class="sidebar-title">Guia de Monografia Sem Medo</h2>
+      <p style="font-size: 0.78rem; color: var(--on-surface-variant); margin: 4px 0 0 0;">Seu companheiro de escrita científica</p>
+    </div>
+
+    <!-- Indicador de Progresso -->
+    <div class="progress-widget">
+      <div style="display: flex; justify-content: space-between; font-size: 0.76rem; font-family: var(--font-label); font-weight: 700;">
+        <span>SUA JORNADA</span>
+        <span id="global-progress-text">0% Concluído</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="global-progress-bar"></div>
+      </div>
+      <p style="font-size: 0.72rem; color: var(--on-surface-variant); margin: 6px 0 0 0;">
+        <span id="completed-count">0</span> de 10 missões validadas
+      </p>
+    </div>
+
+    <!-- Navegação -->
+    <nav>
+      <ul class="missions-nav" id="missions-nav-list">
+        <li><a href="#espinha-dorsal" class="active"><span class="nav-step-num">00</span><span>Espinha Dorsal do Filme</span></a></li>
+        <li><a href="#missao-1"><span class="nav-step-num">01</span><span>Estrutura & Sumário</span></a></li>
+        <li><a href="#missao-2"><span class="nav-step-num">02</span><span>Abertura (Introdução)</span></a></li>
+        <li><a href="#missao-3"><span class="nav-step-num">03</span><span>Problema & Justificativa</span></a></li>
+        <li><a href="#missao-4"><span class="nav-step-num">04</span><span>Mapa de Objetivos</span></a></li>
+        <li><a href="#missao-5"><span class="nav-step-num">05</span><span>Cenário Teórico</span></a></li>
+        <li><a href="#missao-6"><span class="nav-step-num">06</span><span>Bastidores & Metodologia</span></a></li>
+        <li><a href="#missao-7"><span class="nav-step-num">07</span><span>Construção da Solução</span></a></li>
+        <li><a href="#missao-8"><span class="nav-step-num">08</span><span>Resultados vs Discussão</span></a></li>
+        <li><a href="#missao-9"><span class="nav-step-num">09</span><span>Desfecho & Conclusão</span></a></li>
+        <li><a href="#missao-10"><span class="nav-step-num">10</span><span>Referências & Ética IA</span></a></li>
+      </ul>
+    </nav>
+
+    <!-- Atalhos de Ação -->
+    <div style="margin-top: auto; padding-top: var(--space-sm); border-top: 1px solid var(--outline-light); display: flex; flex-direction: column; gap: 8px;">
+      <button onclick="exportAllToDoc()" class="btn btn-doc-export" style="width: 100%; font-size: 0.78rem; padding: 9px 12px;">
+        <i data-lucide="file-down" style="width: 15px; height: 15px;"></i> Baixar Minha Escrita (.doc)
+      </button>
+      <a href="#gerador-roteiro" class="btn btn-secondary" style="width: 100%; font-size: 0.76rem; padding: 7px 12px;">
+        <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Simulador de Ideias
+      </a>
+    </div>
+  </aside>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="book-content">
+
+    <!-- HERO / ABERTURA ACOLHEDORA -->
+    <header class="book-hero">
+      <div class="hero-meta">
+        <span class="badge-mentor"><i data-lucide="book-open" style="width: 13px; height: 13px;"></i> Guia Prático da Prof.ª Suzana Mota</span>
+        <span style="font-family: var(--font-label); font-size: 0.8rem; color: var(--on-surface-variant);">Edição Interativa • Gerada com Notebook LM + Claude - Sob a supervisão e revisão da Prof.ª Suzana Mota</span>
+      </div>
+      <h1>Metodologia Científica: Guia Prático de Escrita de TCC (don't panic!)</h1>
+      <p class="lead">
+        Respire fundo, pegue um café (ou um chá quentinho) e dê adeus à tela em branco! Escrever seu primeiro trabalho científico não é um bicho de sete cabeças: é como escrever o <strong>roteiro de um filme</strong> onde você é o diretor e a tecnologia é a protagonista.
+      </p>
+
+      <!-- CARTA ACOLHEDORA DA PROF. SUZANA MOTA -->
+      <div class="mentor-welcome-card">
+        <h3><i data-lucide="message-square-heart" style="width: 24px; height: 24px;"></i> Um papo sincero antes de começarmos</h3>
+        <p style="margin: 0 0 10px 0; color: var(--on-primary-container);">
+          "Oi, querido(a) aluno(a)! Eu sei exatamente o frio na barriga que dá olhar para um documento em branco no Word e pensar: <em>'Eu nunca escrevi um trabalho científico na vida, não sei falar difícil e tenho medo da banca'</em>. Calma! Todo profissional, cientista, mestre ou doutor já esteve exatamente onde você está hoje.
+        </p>
+        <p style="margin: 0 0 10px 0; color: var(--on-primary-container);">
+          Ninguém nasce sabendo escrever monografia. A escrita científica não é um dom mágico, é um <strong>método</strong>, igualzinho a aprender a programar! E tem mais: você <strong>não precisa escrever difícil</strong> para parecer inteligente. Clareza, organização e honestidade valem mil vezes mais do que palavras rebuscadas.
+        </p>
+        <p style="margin: 0; color: var(--on-primary-container);">
+          Para tornar tudo leve e fácil de visualizar, vamos construir juntos um <strong>Exemplo Único</strong> do início ao fim sobre um tema super próximo da nossa realidade: <strong>“O impacto da gamificação no aprendizado de lógica de programação”</strong>. Em cada etapa, tudo o que você escrever nos quadrados de rascunho <strong>vai automaticamente para dentro do prompt (comando) de IA</strong> logo abaixo , aí é só clicar em copiar, colar na IA para pedir sugestões e, no final, baixar tudo em um arquivo <strong>.doc</strong> pronto para editar!"
+        </p>
+      </div>
+
+      <!-- AVISO IMPORTANTE SOBRE USO DE IA -->
+      <div class="ai-ethics-banner">
+        <h3><i data-lucide="bot" style="width: 22px; height: 22px;"></i> Regra de Ouro sobre Inteligência Artificial: Copiloto Sim, PILOTO jamais!</h3>
+        <p style="margin: 0 0 8px 0;">
+          Ferramentas de IA (como ChatGPT, Claude, Gemini ou <a href="https://consensus.app/" target="_blank" rel="noopener noreferrer">Consensus</a>) são incríveis para nos ajudar a <strong>ter ideias, destravar o pensamento, organizar tópicos e revisar nossa gramática</strong>.
+        </p>
+        <p style="margin: 0 0 8px 0;">
+          <strong>Porém, nunca peça para a IA escrever a monografia por você!</strong> Quando você copia e cola textos gerados por robôs sem a sua própria voz, o seu trabalho vira um verdadeiro <strong>"Frankenstein acadêmico"</strong>: parágrafos desconexos, cheio de palavras repetitivas, difícil de ler e com alto risco de referências inventadas (alucinações). A banca percebe na primeira página!
+        </p>
+        <p style="margin: 0; font-weight: 700; color: var(--accent-purple);">
+          <i data-lucide="shield-check" style="width: 16px; height: 16px; vertical-align: middle;"></i> Seja transparente e orgulhoso(a): declare sempre no seu trabalho como usou a IA como ferramenta de apoio. Declarar é a forma ética, moderna e segura de pesquisar! E vou mostrar como usar a IA do jeito certo e de forma ética, para MELHORAR o seu trabalho e não para fazer por você!
+        </p>
+      </div>
+    </header>
+
+    <!-- =================================================================== -->
+    <!-- PASSO ZERO (ANTES DO SUMÁRIO): A ESPINHA DORSAL DO ROTEIRO DO FILME -->
+    <!-- =================================================================== -->
+    <section id="espinha-dorsal" class="spine-card" style="scroll-margin-top: var(--space-xl);">
+      <div class="spine-header">
+        <span class="mission-tag" style="margin: 0;"><i data-lucide="clapperboard" style="width: 14px; height: 14px;"></i> Passo 00 • Antes do Sumário</span>
+      </div>
+      <h2 style="margin: 0 0 var(--space-sm) 0; font-size: var(--headline-size); color: var(--primary-dark);">
+        A Espinha Dorsal do "Roteiro do Filme"
+      </h2>
+      <p style="margin: 0 0 var(--space-md) 0; color: var(--on-surface);">
+        Antes mesmo de montar o sumário ou abrir o editor de texto, você precisa ter absoluta clareza sobre <strong>quatro peças fundamentais</strong>. No cinema, chamamos isso de <em>espinha dorsal do roteiro</em>: se ela estiver firme, o filme inteiro fica de pé; se estiver torta, a história desaba no meio do caminho!
+      </p>
+
+      <!-- Exemplo Claro da Espinha Dorsal -->
+      <div class="tech-example-box" style="background-color: #ffffff; margin-bottom: var(--space-lg);">
+        <span class="tech-example-badge">Exemplo Simples • Nosso Tema Guia</span>
+        <h4>Espinha Dorsal: O Impacto da Gamificação no Aprendizado de Lógica de Programação</h4>
+        <ul style="margin: 8px 0 0 0; padding-left: 1.25rem; font-size: 0.95rem;">
+          <li><strong>1. Problema:</strong> Muitos estudantes iniciantes sentem dificuldade e desmotivação ao estudar lógica de programação pelos métodos tradicionais (listas de exercícios estáticas e abstratas), gerando altas taxas de reprovação e abandono.</li>
+          <li><strong>2. Pergunta de Pesquisa:</strong> <em>De que maneira o uso de elementos de gamificação (pontos, desafios e recompensas) impacta o engajamento e o aprendizado de lógica de programação de alunos iniciantes?</em></li>
+          <li><strong>3. Objetivo Geral:</strong> <em>Avaliar o impacto da aplicação de estratégias de gamificação no desempenho e na motivação de estudantes iniciantes na disciplina de Lógica de Programação.</em></li>
+          <li><strong>4. Objetivos Específicos:</strong>
+            <ol style="margin-top: 4px;">
+              <li>Identificar as principais dificuldades enfrentadas por alunos iniciantes ao aprender lógica de programação;</li>
+              <li>Estruturar uma atividade prática gamificada aplicando conceitos de variáveis, condicionais e laços de repetição;</li>
+              <li>Aplicar a dinâmica gamificada com uma turma de estudantes iniciantes;</li>
+              <li>Comparar o desempenho e a percepção de motivação dos alunos antes e após a experiência gamificada.</li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Oficina do Aluno - Passo 00 COM 4 QUADRADOS SEPARADOS E SINCRONIZAÇÃO AUTOMÁTICA NO PROMPT -->
+      <div class="student-workshop-card">
+        <div class="workshop-header">
+          <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Preencha Cada Quadrado da Espinha Dorsal</h4>
+          <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado ao vivo com o Prompt abaixo</span>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--on-surface-variant); margin: 0 0 var(--space-md) 0;">
+          Escreva nos 4 quadrados separados abaixo com suas próprias palavras (sem medo de errar!). Repare que conforme você digita, o seu texto entra automaticamente dentro do <strong>Prompt para IA</strong> logo abaixo.
+        </p>
+
+        <!-- GRID COM OS 4 QUADRADOS SEPARADOS -->
+        <div class="spine-boxes-grid">
+          <!-- Quadrado 1: Problema -->
+          <div class="spine-input-box">
+            <div class="spine-input-box-header">
+              <span class="spine-step-badge">1º QUADRADO</span>
+              <h5 class="spine-input-box-title">Problema que Desejo Resolver</h5>
+            </div>
+            <p class="spine-input-hint">Qual é a "dor" ou dificuldade real que você observou? Quem sofre com esse problema hoje?</p>
+            <textarea id="write-spine-problema" oninput="syncSpineAndSave()" placeholder="Ex.: Alunos iniciantes sentem muita dificuldade e desânimo nas primeiras aulas de programação porque os exercícios são abstratos..."></textarea>
+          </div>
+
+          <!-- Quadrado 2: Pergunta de Pesquisa -->
+          <div class="spine-input-box">
+            <div class="spine-input-box-header">
+              <span class="spine-step-badge">2º QUADRADO</span>
+              <h5 class="spine-input-box-title">Pergunta de Pesquisa (?)</h5>
+            </div>
+            <p class="spine-input-hint">Transforme o problema em uma pergunta clara (comece com "Como", "De que maneira" ou "Qual o impacto").</p>
+            <textarea id="write-spine-pergunta" oninput="syncSpineAndSave()" placeholder="Ex.: De que maneira o uso de gamificação impacta o aprendizado e a motivação de alunos iniciantes de lógica de programação?"></textarea>
+          </div>
+
+          <!-- Quadrado 3: Objetivo Geral -->
+          <div class="spine-input-box">
+            <div class="spine-input-box-header">
+              <span class="spine-step-badge">3º QUADRADO</span>
+              <h5 class="spine-input-box-title">Objetivo Geral (A Linha de Chegada)</h5>
+            </div>
+            <p class="spine-input-hint">Comece com um verbo no infinitivo (Avaliar, Desenvolver, Analisar...). É a meta principal do TCC.</p>
+            <textarea id="write-spine-obj-geral" oninput="syncSpineAndSave()" placeholder="Ex.: Avaliar o impacto da aplicação de estratégias de gamificação no desempenho e na motivação de estudantes iniciantes..."></textarea>
+          </div>
+
+          <!-- Quadrado 4: Objetivos Específicos -->
+          <div class="spine-input-box">
+            <div class="spine-input-box-header">
+              <span class="spine-step-badge">4º QUADRADO</span>
+              <h5 class="spine-input-box-title">Objetivos Específicos (As Cenas do Filme)</h5>
+            </div>
+            <p class="spine-input-hint">Liste 3 ou 4 etapas em ordem cronológica (1. Mapear..., 2. Estruturar..., 3. Aplicar..., 4. Avaliar...).</p>
+            <textarea id="write-spine-obj-especificos" oninput="syncSpineAndSave()" placeholder="1. Identificar as principais dificuldades...&#10;2. Planejar uma atividade gamificada...&#10;3. Aplicar a atividade com os alunos...&#10;4. Avaliar os resultados obtidos..."></textarea>
+          </div>
+        </div>
+        
+        <!-- PROMPT SINCRONIZADO EM TEMPO REAL -->
+        <div class="ai-prompt-box">
+          <div class="ai-prompt-header">
+            <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com o Seu Texto (Só Copiar e Colar na IA!)</span>
+            <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-passo-0')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt Completo</button>
+          </div>
+          <pre id="prompt-passo-0" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Atue como uma orientadora de TCC paciente e didática na área de Tecnologia. Analise o rascunho da minha "espinha dorsal" abaixo. NÃO reescreva o texto por mim para que ele mantenha a minha identidade. Apenas me dê 3 sugestões práticas de melhoria e verifique se os objetivos específicos realmente levam ao objetivo geral:
+
+- PROBLEMA QUE DESEJO RESOLVER:
+<span id="live-spine-problema" class="prompt-dynamic-insert">[Preencha o 1º quadrado acima e seu texto aparecerá aqui automaticamente]</span>
+
+- PERGUNTA DE PESQUISA:
+<span id="live-spine-pergunta" class="prompt-dynamic-insert">[Preencha o 2º quadrado acima e seu texto aparecerá aqui automaticamente]</span>
+
+- OBJETIVO GERAL:
+<span id="live-spine-obj-geral" class="prompt-dynamic-insert">[Preencha o 3º quadrado acima e seu texto aparecerá aqui automaticamente]</span>
+
+- OBJETIVOS ESPECÍFICOS:
+<span id="live-spine-obj-especificos" class="prompt-dynamic-insert">[Preencha o 4º quadrado acima e seu texto aparecerá aqui automaticamente]</span></pre>
+        </div>
+          <label class="improved-text-label" for="improved-espinha-dorsal">✍️ Versão melhorada da espinha dorsal</label>
+          <textarea id="improved-espinha-dorsal" class="improved-textarea"
+            oninput="syncImprovedAndSave('espinha-dorsal')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 1: VISÃO GERAL E ESTRUTURA DO SUMÁRIO -->
+    <!-- =================================================================== -->
+    <section id="missao-1" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="map" style="width: 14px; height: 14px;"></i> Missão 01</span>
+        <h2>Estrutura da História e o Sumário Provisório</h2>
+        <p class="mission-subtitle">Organizando os três atos do seu trabalho conforme a norma ABNT NBR 14724</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="target" style="width: 20px; height: 20px;"></i></span> 1. Qual a finalidade?</h3>
+          <p>
+            Agora que você já definiu a espinha dorsal (Problema, Pergunta e Objetivos), é hora de montar o <strong>Sumário Provisório</strong>. Ele funciona como o índice de cenas do filme: impede que você se perca no meio da escrita ou fique repetindo o mesmo assunto em capítulos diferentes.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="file-text" style="width: 20px; height: 20px;"></i></span> 2. O que escrever em cada parte?</h3>
+          <p>A norma <span class="term-explain">ABNT NBR 14724 (norma brasileira que define as regras de formatação de trabalhos acadêmicos)</span> divide a monografia em três grandes blocos:</p>
+          <div class="table-container">
+            <table class="tech-table">
+              <thead>
+                <tr>
+                  <th>Bloco</th>
+                  <th>O que entra aqui</th>
+                  <th>Como pensar nisso sem estresse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Pré-Textuais</strong></td>
+                  <td>Capa, Folha de Rosto, Resumo (em português), <span class="term-explain">Abstract (resumo em inglês)</span>, Lista de Figuras/Siglas e Sumário.</td>
+                  <td>É a capa e a sinopse do seu filme. Você preenche quase tudo só no finalzinho!</td>
+                </tr>
+                <tr>
+                  <td><strong>Textuais</strong></td>
+                  <td><strong>1. Introdução</strong> • <strong>2. Fundamentação Teórica</strong> • <strong>3. Metodologia</strong> • <strong>4. Desenvolvimento / Aplicação</strong> • <strong>5. Resultados e Discussão</strong> • <strong>6. Considerações Finais</strong>.</td>
+                  <td>É o filme acontecendo! Cada capítulo responde a uma parte da sua espinha dorsal.</td>
+                </tr>
+                <tr>
+                  <td><strong>Pós-Textuais</strong></td>
+                  <td><strong>Referências</strong> (lista de quem você citou), <strong>Apêndices</strong> (questionários/materiais criados por você) e <strong>Anexos</strong> (documentos prontos de terceiros).</td>
+                  <td>São os créditos finais e os materiais extras dos bastidores.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="code" style="width: 20px; height: 20px;"></i></span> 3. Exemplo Prático: Sumário do Nosso TCC de Gamificação</h3>
+          <div class="tech-example-box">
+            <span class="tech-example-badge">Exemplo Simples e Didático</span>
+            <h4>Sumário Provisório: Gamificação no Aprendizado de Lógica de Programação</h4>
+            <div class="code-box">
+              <div class="code-box-header">
+                <span>SUMÁRIO PROVISÓRIO (MODELO INICIANTE)</span>
+                <button class="copy-btn" onclick="copyCodeText('sumario-exemplo')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar</button>
+              </div>
+<pre id="sumario-exemplo" style="margin:0; font-family: inherit;">1 INTRODUÇÃO
+  1.1 Contextualização e Problema de Pesquisa
+  1.2 Justificativa
+  1.3 Objetivos (Geral e Específicos)
+2 FUNDAMENTAÇÃO TEÓRICA
+  2.1 Desafios no Ensino e Aprendizagem de Lógica de Programação
+  2.2 Conceitos e Mecânicas de Gamificação na Educação
+  2.3 Trabalhos Relacionados (O que outros autores já testaram)
+3 METODOLOGIA
+  3.1 Classificação da Pesquisa
+  3.2 Planejamento da Atividade Gamificada e Instrumentos de Coleta
+  3.3 Participantes e Ética na Pesquisa
+4 DESENVOLVIMENTO DA EXPERIÊNCIA GAMIFICADA
+  4.1 Estrutura dos Desafios de Lógica (Variáveis, Condicionais e Laços)
+  4.2 Regras do Jogo: Pontuação, Níveis e Feedback Imediato
+5 RESULTADOS E DISCUSSÃO
+  5.1 Desempenho dos Estudantes nas Atividades
+  5.2 Percepção de Motivação e Engajamento (Questionário)
+  5.3 Discussão à Luz da Literatura
+6 CONSIDERAÇÕES FINAIS
+REFERÊNCIAS
+APÊNDICE A – Questionário de Percepção dos Alunos</pre>
+            </div>
+          <label class="improved-text-label" for="improved-missao-1">✍️ Versão melhorada do texto, Missão 01</label>
+          <textarea id="improved-missao-1" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-1')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+          </div>
+        </div>
+
+        <div class="mentor-tip-box">
+          <h4><i data-lucide="smile" style="width: 18px; height: 18px;"></i> Dica da Prof.ª Suzana:</h4>
+          <p>"Não tente escrever o TCC na ordem numérica (começando pela página 1 e indo até a 50). Comece criando os títulos do seu Sumário Provisório no editor de texto. Ver os capítulos organizados já tira 50% da ansiedade porque você passa a ter pequenas metas claras!"</p>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 1 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Monte o Sumário Provisório do Seu TCC</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-1" class="student-textarea" oninput="syncSectionAndSave('missao-1')" placeholder="Liste aqui os capítulos (1 a 6) e os subtópicos que você imagina para o seu trabalho..."></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com o Seu Sumário</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-1')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-1" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Avalie o sumário provisório que montei para o meu TCC (abaixo). Verifique se a ordem dos capítulos faz sentido lógico para um leitor iniciante e sugira se está faltando algum subtópico importante na Fundamentação Teórica ou na Metodologia. Não escreva os textos, apenas comente a estrutura:
+
+<span id="live-missao-1" class="prompt-dynamic-insert">[Escreva seu sumário na caixa acima e ele aparecerá aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-2">✍️ Versão melhorada do texto, Missão 02</label>
+          <textarea id="improved-missao-2" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-2')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 01</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="1" onchange="updateProgress()">
+              <span>Estruturei meu Sumário Provisório com os 6 capítulos principais.</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="1" onchange="updateProgress()">
+              <span>Entendi a diferença entre Apêndice (feito por mim) e Anexo (feito por terceiros).</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 2: A ABERTURA DO FILME (INTRODUÇÃO & PIRÂMIDE INVERTIDA) -->
+    <!-- =================================================================== -->
+    <section id="missao-2" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="camera" style="width: 14px; height: 14px;"></i> Missão 02</span>
+        <h2>A Abertura do Filme: Introdução & Pirâmide Invertida</h2>
+        <p class="mission-subtitle">Como conduzir o leitor do assunto geral até a proposta do seu TCC em 5 passos simples</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="target" style="width: 20px; height: 20px;"></i></span> 1. Qual a finalidade e como organizar?</h3>
+          <p>
+            Imagine uma câmera de cinema começando lá no alto, mostrando uma cidade inteira, e depois dando zoom bem devagar até focar na mesa de um estudante programando. Essa é a técnica da <strong>Pirâmide Invertida (ou Funil)</strong>! Você começa falando do cenário amplo e vai afunilando parágrafo por parágrafo até chegar exatamente no seu trabalho.
+          </p>
+
+          <!-- DIAGRAMA SVG DA PIRÂMIDE INVERTIDA (SEM CORTES DE TEXTO!) -->
+          <div class="svg-diagram-card">
+            <h4 style="margin: 0 0 var(--space-sm) 0; color: var(--primary-dark); font-size: 1.05rem;">
+              <i data-lucide="filter" style="width: 18px; height: 18px; vertical-align: middle;"></i> Pirâmide Invertida da Introdução (Do Amplo ao Específico)
+            </h4>
+            <div class="svg-diagram-wrapper">
+              <svg viewBox="0 0 820 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama da Pirâmide Invertida da Introdução">
+                <!-- Camada 1: Contexto Amplo -->
+                <polygon points="20,15 800,15 735,82 85,82" fill="#00562d" />
+                <text x="410" y="43" fill="#ffffff" font-family="'Public Sans', sans-serif" font-weight="800" font-size="15" text-anchor="middle">1. CONTEXTO AMPLO (O cenário geral)</text>
+                <text x="410" y="65" fill="#e8f5e9" font-family="'Public Sans', sans-serif" font-size="13" text-anchor="middle">Importância da lógica de programação na formação em tecnologia</text>
+                
+                <!-- Camada 2: O Problema / Dor -->
+                <polygon points="90,89 730,89 665,156 155,156" fill="#00703b" />
+                <text x="410" y="117" fill="#ffffff" font-family="'Public Sans', sans-serif" font-weight="800" font-size="15" text-anchor="middle">2. O PROBLEMA REAL (A dor dos alunos)</text>
+                <text x="410" y="139" fill="#e8f5e9" font-family="'Public Sans', sans-serif" font-size="13" text-anchor="middle">Dificuldade de abstração, desmotivação e altas taxas de reprovação</text>
+                
+                <!-- Camada 3: O que já existe -->
+                <polygon points="160,163 660,163 595,230 225,230" fill="#164e63" />
+                <text x="410" y="191" fill="#ffffff" font-family="'Public Sans', sans-serif" font-weight="800" font-size="15" text-anchor="middle">3. O QUE JÁ FOI FEITO (Soluções atuais)</text>
+                <text x="410" y="213" fill="#e0f2fe" font-family="'Public Sans', sans-serif" font-size="13" text-anchor="middle">Listas de exercícios tradicionais e plataformas online comuns</text>
+                
+                <!-- Camada 4: A Lacuna -->
+                <polygon points="230,237 590,237 525,304 295,304" fill="#b45309" />
+                <text x="410" y="265" fill="#ffffff" font-family="'Public Sans', sans-serif" font-weight="800" font-size="14" text-anchor="middle">4. A LACUNA (O que ainda falta)</text>
+                <text x="410" y="287" fill="#fef3c7" font-family="'Public Sans', sans-serif" font-size="12.5" text-anchor="middle">Falta de dinâmicas lúdicas e engajadoras para iniciantes</text>
+                
+                <!-- Camada 5: A Sua Proposta -->
+                <polygon points="300,311 520,311 460,378 360,378" fill="#5b21b6" />
+                <text x="410" y="340" fill="#ffffff" font-family="'Public Sans', sans-serif" font-weight="800" font-size="14" text-anchor="middle">5. SUA PROPOSTA</text>
+                <text x="410" y="361" fill="#f3e8ff" font-family="'Public Sans', sans-serif" font-size="12" text-anchor="middle">Avaliar a gamificação</text>
+              </svg>
+            </div>
+            <p class="diagram-caption">Figura 1: A técnica da Pirâmide Invertida (Funil) aplicada à Introdução do TCC.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="terminal" style="width: 20px; height: 20px;"></i></span> 2. Exemplo Prático de Introdução (Tema Gamificação)</h3>
+          <div class="tech-example-box">
+            <span class="tech-example-badge">Texto Modelo Simples e Claro</span>
+            <h4>Rascunho de Introdução: Gamificação na Lógica de Programação</h4>
+            <div style="background-color: #ffffff; padding: var(--space-md); border-radius: var(--rounded); border: 1px solid var(--outline-light); font-size: 0.95rem; line-height: 1.72;">
+              <p>
+                <strong>[1. Contexto Amplo]:</strong> A lógica de programação é a base fundamental para qualquer estudante que ingressa nos cursos da área de Tecnologia da Informação. Aprender a estruturar algoritmos e resolver problemas de forma sequencial prepara o aluno para todas as disciplinas futuras de desenvolvimento de software (SILVA, 2023).
+              </p>
+              <p>
+                <strong>[2. O Problema]:</strong> No entanto, estudos na área de educação em computação apontam que as disciplinas introdutórias de programação apresentam altos índices de reprovação e desistência. Muitos alunos iniciantes sentem-se frustrados ao lidar com regras rígidas de sintaxe e exercícios abstratos, o que reduz a motivação logo nas primeiras semanas de aula (SANTOS; OLIVEIRA, 2024).
+              </p>
+              <p>
+                <strong>[3. O que já foi feito e 4. Lacuna]:</strong> Embora existam diversas plataformas digitais de exercícios de código, grande parte delas foca apenas na correção automática de acertos e erros, sem explorar estratégias lúdicas que mantenham o estudante engajado. Assim, observa-se a necessidade de investigar metodologias ativas, como a gamificação, aplicadas diretamente ao contexto de turmas iniciantes.
+              </p>
+              <p style="margin-bottom: 0;">
+                <strong>[5. A Proposta]:</strong> Diante desse cenário, este trabalho tem como propósito avaliar o impacto do uso de mecânicas de gamificação , tais como sistemas de pontuação, níveis de dificuldade e feedback imediato , no aprendizado e na motivação de alunos iniciantes de lógica de programação.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="search" style="width: 20px; height: 20px;"></i></span> 3. Onde achar dados reais para sua Introdução sem inventar nada?</h3>
+          <p>
+            Para dizer que "muitos alunos reprovam em programação", você precisa citar um estudo real. Use ferramentas científicas confiáveis (e gratuitas!) que buscam artigos verdadeiros:
+          </p>
+          <ul>
+            <li><a href="https://consensus.app/" target="_blank" rel="noopener noreferrer"><strong>Consensus (consensus.app)</strong></a>: Uma IA que busca respostas exclusivamente dentro de artigos científicos reais revisados por pares.</li>
+            <li><a href="https://scholar.google.com.br/" target="_blank" rel="noopener noreferrer"><strong>Google Acadêmico (scholar.google.com.br)</strong></a>: O buscador clássico de artigos, TCCs e dissertações em português e inglês.</li>
+            <li><a href="https://sol.sbc.org.br/" target="_blank" rel="noopener noreferrer"><strong>SBC OpenLib (sol.sbc.org.br)</strong></a>: Biblioteca digital da Sociedade Brasileira de Computação, ótima para achar artigos brasileiros sobre ensino de computação!</li>
+          </ul>
+          <p>
+            Ao abrir um artigo, procure pelo <span class="term-explain">DOI (Digital Object Identifier , uma espécie de "CPF" único e permanente de cada artigo científico na internet)</span> para garantir que a fonte é oficial e rastreável.
+          </p>
+        </div>
+
+        <div class="mentor-tip-box">
+          <h4><i data-lucide="heart" style="width: 18px; height: 18px;"></i> Dica da Prof.ª Suzana:</h4>
+          <p>"Não trave tentando deixar a Introdução perfeita no primeiro dia! Faça um rascunho simples seguindo os 5 blocos da pirâmide. No final do TCC, quando seus resultados estiverem prontos, você volta aqui e dá o polimento final."</p>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 2 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Escreva o Rascunho da Sua Introdução (5 Parágrafos)</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-2" class="student-textarea" oninput="syncSectionAndSave('missao-2')" placeholder="Escreva aqui seguindo o funil:&#10;1. Contexto amplo:&#10;2. O problema / dor:&#10;3. O que já existe:&#10;4. O que falta (lacuna):&#10;5. Proposta do meu trabalho:"></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com a Sua Introdução</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-2')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-2" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Leia o rascunho da minha introdução (abaixo), que foi escrito usando a técnica da pirâmide invertida. NÃO reescreva o texto inteiro por mim para que ele não perca a minha identidade. Apenas aponte: (1) se a transição entre os parágrafos está fluida, (2) onde eu deveria inserir citações de autores para dar mais credibilidade e (3) sugestões de conectivos para melhorar a leitura:
+
+<span id="live-missao-2" class="prompt-dynamic-insert">[Escreva sua introdução na caixa acima e ela aparecerá aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-3">✍️ Versão melhorada do texto, Missão 03</label>
+          <textarea id="improved-missao-3" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-3')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 02</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="2" onchange="updateProgress()">
+              <span>Segui a ordem da Pirâmide Invertida (Contexto → Problema → O que existe → Lacuna → Proposta).</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="2" onchange="updateProgress()">
+              <span>Busquei artigos reais no Consensus, Google Acadêmico ou SBC OpenLib para embasar o problema.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 3: PROBLEMA & JUSTIFICATIVA -->
+    <!-- =================================================================== -->
+    <section id="missao-3" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="help-circle" style="width: 14px; height: 14px;"></i> Missão 03</span>
+        <h2>O Conflito e a Importância: Problema & Justificativa</h2>
+        <p class="mission-subtitle">Explicando por que o seu trabalho merece existir e quem ganha com ele</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="target" style="width: 20px; height: 20px;"></i></span> 1. Qual a finalidade e o que escrever?</h3>
+          <p>
+            A <strong>Justificativa</strong> é a resposta sincera e bem argumentada para a pergunta: <em>"Por que vale a pena investir tempo e esforço nesta pesquisa?"</em>. Para não ficar sem assunto, divida sua justificativa em três olhares simples:
+          </p>
+          <ul>
+            <li><strong>Importância Acadêmica / Científica:</strong> Como esse estudo ajuda professores e pesquisadores a entenderem melhor o tema?</li>
+            <li><strong>Importância Social / Prática:</strong> Como isso melhora a vida real dos estudantes, usuários ou empresas?</li>
+            <li><strong>Importância Tecnológica:</strong> Qual solução, ferramenta ou processo técnico é aplicado ou testado?</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="file-check" style="width: 20px; height: 20px;"></i></span> 2. Exemplo Prático: Justificativa do Tema Gamificação</h3>
+          <div class="tech-example-box">
+            <span class="tech-example-badge">Exemplo Didático</span>
+            <h4>Problema e Justificativa , Gamificação na Lógica de Programação</h4>
+            <div style="background-color: #ffffff; padding: var(--space-md); border-radius: var(--rounded); border: 1px solid var(--outline-light); font-size: 0.95rem; line-height: 1.72;">
+              <p>
+                <strong>Problema de Pesquisa:</strong><br>
+                <em>"De que maneira a aplicação de elementos de gamificação (como pontuação, níveis progressivos e desafios com feedback imediato) influencia o aprendizado e a motivação de alunos iniciantes na disciplina de Lógica de Programação?"</em>
+              </p>
+              <p style="margin-bottom: 0;">
+                <strong>Justificativa:</strong><br>
+                Este trabalho justifica-se sob três aspectos principais. <strong>No âmbito educacional e social</strong>, busca atacar diretamente a desmotivação e a evasão nos primeiros períodos dos cursos de tecnologia, tornando o contato inicial com a programação mais acolhedor e interativo. <strong>No âmbito acadêmico</strong>, contribui com evidências práticas sobre como mecânicas de jogos auxiliam na fixação de estruturas básicas (variáveis, condicionais e laços), servindo de apoio para docentes planejarem suas aulas. Por fim, <strong>sob o ponto de vista tecnológico</strong>, demonstra como plataformas e ferramentas digitais interativas podem transformar exercícios tradicionais em experiências dinâmicas de aprendizagem.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pitfalls-box">
+          <h4><i data-lucide="x-circle" style="width: 18px; height: 18px;"></i> Erro Comum a Evitar:</h4>
+          <ul>
+            <li><strong>Justificativa pessoal ("porque eu gosto"):</strong> Evite escrever <em>"Escolhi esse tema porque eu gosto muito de jogos"</em>. Transforme isso em um argumento profissional: <em>"O crescimento do uso de mecânicas de jogos em ambientes educacionais demonstra alto potencial para engajar nativos digitais..."</em>.</li>
+          </ul>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 3 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Escreva sua Justificativa Completa (3 Dimensões)</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-3" class="student-textarea" oninput="syncSectionAndSave('missao-3')" placeholder="Escreva aqui os 3 motivos (Acadêmico, Social/Prático e Tecnológico) pelos quais seu TCC é importante..."></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com a Sua Justificativa</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-3')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-3" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Analise a justificativa que escrevi para o meu TCC (abaixo). Verifique se deixei claro os benefícios práticos, acadêmicos e tecnológicos sem usar linguagem informal ("eu acho", "eu gosto"). Sugira 2 melhorias de argumentação mantendo o meu estilo de escrita:
+
+<span id="live-missao-3" class="prompt-dynamic-insert">[Escreva sua justificativa na caixa acima e ela aparecerá aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-4">✍️ Versão melhorada do texto, Missão 04</label>
+          <textarea id="improved-missao-4" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-4')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 03</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="3" onchange="updateProgress()">
+              <span>Minha pergunta de pesquisa não pode ser respondida apenas com "sim" ou "não".</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="3" onchange="updateProgress()">
+              <span>Apresentei a importância prática, acadêmica e tecnológica do trabalho.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 4: MAPA DE OBJETIVOS -->
+    <!-- =================================================================== -->
+    <section id="missao-4" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="milestone" style="width: 14px; height: 14px;"></i> Missão 04</span>
+        <h2>O Mapa de Objetivos: Geral e Específicos</h2>
+        <p class="mission-subtitle">Usando verbos de ação para transformar ideias em metas alcançáveis</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="list-ordered" style="width: 20px; height: 20px;"></i></span> 1. Como escrever objetivos sem erro?</h3>
+          <p>
+            Todo objetivo começa com um <strong>verbo no infinitivo</strong> (terminado em <em>-ar, -er, -ir</em>). Pense assim: o <strong>Objetivo Geral</strong> é o destino final da viagem, e os <strong>Objetivos Específicos</strong> são as paradas no caminho!
+          </p>
+          <div class="table-container">
+            <table class="tech-table">
+              <thead>
+                <tr>
+                  <th>Etapa</th>
+                  <th>Verbos Fáceis de Usar</th>
+                  <th>Exemplo no Nosso Tema (Gamificação)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Entender / Mapear</strong></td>
+                  <td>Identificar, levantar, mapear, analisar</td>
+                  <td><strong>Identificar</strong> as principais dificuldades de alunos iniciantes em lógica de programação.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Planejar / Estruturar</strong></td>
+                  <td>Planejar, estruturar, projetar, definir</td>
+                  <td><strong>Estruturar</strong> uma atividade gamificada envolvendo conceitos básicos de algoritmos.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Aplicar / Construir</strong></td>
+                  <td>Aplicar, desenvolver, implementar, realizar</td>
+                  <td><strong>Aplicar</strong> a atividade gamificada com uma turma de estudantes iniciantes.</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Avaliar / Comparar</strong></td>
+                  <td>Avaliar, comparar, verificar, mensurar</td>
+                  <td><strong>Avaliar</strong> o desempenho e o nível de engajamento dos alunos após a atividade.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pitfalls-box">
+          <h4><i data-lucide="x-circle" style="width: 18px; height: 18px;"></i> Erro Comum a Evitar:</h4>
+          <ul>
+            <li><strong>Colocar tarefa de estudo como objetivo:</strong> <em>"Estudar o que é gamificação"</em> ou <em>"Aprender a programar"</em> são obrigações suas como aluno, não objetivos do TCC! Use verbos que gerem entrega, como <em>"Mapear os conceitos..."</em> ou <em>"Aplicar a atividade..."</em>.</li>
+          </ul>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 4 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Refine a Versão Final dos Seus Objetivos</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-4" class="student-textarea" oninput="syncSectionAndSave('missao-4')" placeholder="Objetivo Geral: [Verbo no infinitivo]...&#10;&#10;Objetivos Específicos:&#10;1. [Verbo]...&#10;2. [Verbo]...&#10;3. [Verbo]...&#10;4. [Verbo]..."></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com os Seus Objetivos</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-4')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-4" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Confira o Objetivo Geral e os Objetivos Específicos que escrevi abaixo. Verifique se todos começam com verbos no infinitivo, se estão realistas para um TCC de graduação e se algum deles parece apenas uma tarefa de estudo pessoal. Dê dicas de ajuste sem reescrever tudo sozinho:
+
+<span id="live-missao-4" class="prompt-dynamic-insert">[Escreva seus objetivos na caixa acima e eles aparecerão aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-5">✍️ Versão melhorada do texto, Missão 05</label>
+          <textarea id="improved-missao-5" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-5')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 04</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="4" onchange="updateProgress()">
+              <span>Todos os objetivos começam com verbos no infinitivo (ex.: Identificar, Aplicar, Avaliar).</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="4" onchange="updateProgress()">
+              <span>Tenho entre 3 e 4 objetivos específicos em ordem lógica de execução.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 5: CENÁRIO TEÓRICO (FUNDAMENTAÇÃO & TRABALHOS RELACIONADOS) -->
+    <!-- =================================================================== -->
+    <section id="missao-5" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="library" style="width: 14px; height: 14px;"></i> Missão 05</span>
+        <h2>O Cenário Teórico: Fundamentação & Trabalhos Relacionados</h2>
+        <p class="mission-subtitle">Colocando os autores para conversar e descobrindo o que já foi pesquisado</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="book-open-check" style="width: 20px; height: 20px;"></i></span> 1. O que é a Fundamentação Teórica?</h3>
+          <p>
+            Imagine que você vai apresentar seu projeto para alguém que nunca ouviu falar no assunto. A <strong>Fundamentação Teórica</strong> é onde você explica os conceitos principais do seu trabalho apoiado em livros e artigos científicos confiáveis, e mostra outros trabalhos parecidos com o seu (<span class="term-explain">Trabalhos Relacionados ou Estado da Arte , pesquisas recentes que investigaram problemas parecidos com o seu</span>).
+          </p>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="repeat" style="width: 20px; height: 20px;"></i></span> 2. Como fazer os autores "conversarem" (Evite a colcha de retalhos!)</h3>
+          <p>
+            Um erro super comum de quem está começando é fazer uma lista solta: <em>"Segundo Autor A, gamificação é isso. Segundo Autor B, gamificação é aquilo."</em> Em vez disso, conecte as ideias deles como numa conversa:
+          </p>
+          <div class="tech-example-box">
+            <span class="tech-example-badge">Exemplo de Diálogo entre Autores</span>
+            <h4>Como conectar ideias na Fundamentação Teórica</h4>
+            <p style="margin: 0; font-size: 0.95rem; line-height: 1.72;">
+              <em>"De acordo com Kapp (2012), a gamificação consiste na utilização de mecânicas, estética e pensamento dos jogos para engajar pessoas, motivar ações e promover a aprendizagem. Complementando essa visão, Deterding et al. (2011) destacam que aplicar elementos de jogos em contextos não lúdicos, como a sala de aula, ajuda a transformar tarefas complexas em desafios estimulantes. No ensino de lógica de programação, Silva e Souza (2023) observaram que o uso de pontuações e feedback imediato reduz o medo de errar dos estudantes iniciantes."</em>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="sparkles" style="width: 20px; height: 20px;"></i></span> 3. Ferramentas de IA Científicas (Com Links Válidos!) para Achar Artigos</h3>
+          <p>Use estas ferramentas para encontrar artigos reais e entender resumos rapidamente:</p>
+          <ul>
+            <li><a href="https://consensus.app/" target="_blank" rel="noopener noreferrer"><strong>Consensus (https://consensus.app/)</strong></a>: Você faz uma pergunta em inglês ou português (ex.: <em>"gamification impact on programming logic learning"</em>) e ele mostra o consenso científico com os artigos reais.</li>
+            <li><a href="https://www.semanticscholar.org/" target="_blank" rel="noopener noreferrer"><strong>Semantic Scholar (https://www.semanticscholar.org/)</strong></a>: Base gratuita com milhões de artigos de computação e resumos automáticos em uma frase (TL;DR).</li>
+            <li><a href="https://www.connectedpapers.com/" target="_blank" rel="noopener noreferrer"><strong>Connected Papers (https://www.connectedpapers.com/)</strong></a>: Você coloca o título ou <span class="term-explain">DOI (identificador digital do artigo)</span> de um bom artigo e ele desenha um mapa visual com todos os artigos parecidos!</li>
+            <li><a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer"><strong>NotebookLM (https://notebooklm.google.com/)</strong></a>: Ferramenta do Google onde você sobe os PDFs dos artigos que você baixou e faz perguntas apenas sobre aqueles arquivos, sem risco de a IA inventar coisas de fora!</li>
+          </ul>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 5 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Escreva um Parágrafo Conectando 2 Autores</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-5" class="student-textarea" oninput="syncSectionAndSave('missao-5')" placeholder="Escolha 2 conceitos do seu tema, cite dois autores reais que você encontrou e tente conectar as ideias deles em um ou dois parágrafos..."></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com a Sua Fundamentação</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-5')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-5" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Leia o trecho da minha fundamentação teórica abaixo. Verifique se eu consegui conectar as ideias dos autores de forma fluida ou se ficou parecendo uma "colcha de retalhos" (citações soltas). Sugira frases de transição para melhorar a conexão entre os parágrafos, mantendo minhas palavras:
+
+<span id="live-missao-5" class="prompt-dynamic-insert">[Escreva seu trecho na caixa acima e ele aparecerá aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-6">✍️ Versão melhorada do texto, Missão 06</label>
+          <textarea id="improved-missao-6" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-6')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 05</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="5" onchange="updateProgress()">
+              <span>Expliquei os conceitos principais do meu tema com base em livros e artigos reais.</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="5" onchange="updateProgress()">
+              <span>Apresentei pelo menos 2 ou 3 trabalhos relacionados (pesquisas parecidas com a minha).</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 6: BASTIDORES & METODOLOGIA (COM EXPLICAÇÕES SIMPLES!) -->
+    <!-- =================================================================== -->
+    <section id="missao-6" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="wrench" style="width: 14px; height: 14px;"></i> Missão 06</span>
+        <h2>Os Bastidores do Filme: Metodologia Científica Sem Mistério</h2>
+        <p class="mission-subtitle">Explicando o passo a passo de como você fez (ou vai fazer) a sua pesquisa</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="compass" style="width: 20px; height: 20px;"></i></span> 1. Descomplicando os Termos de Metodologia</h3>
+          <p>
+            Muita gente trava na Metodologia por causa dos nomes formais. Pense na metodologia como a <strong>receita do bolo</strong>: se outra pessoa seguir exatamente os passos que você escreveu aqui, ela consegue repetir sua pesquisa! Veja o que cada termo significa na prática:
+          </p>
+
+          <div class="concept-callout">
+            <p style="margin: 0 0 8px 0;"><strong>• Quanto à Natureza , Pesquisa Aplicada:</strong> Significa que você não está criando uma teoria abstrata do zero; você está aplicando conhecimentos na prática para resolver um problema real (como melhorar o ensino de programação).</p>
+            <p style="margin: 0 0 8px 0;"><strong>• Quanto aos Objetivos , Pesquisa Exploratória e Descritiva:</strong> <em>Exploratória</em> porque você investiga um cenário para entendê-lo melhor; <em>Descritiva</em> porque você observa, registra e descreve como os participantes reagiram.</p>
+            <p style="margin: 0 0 8px 0;"><strong>• Quanto à Abordagem , Qualitativa, Quantitativa ou Mista:</strong>
+              <br>, <em>Quantitativa:</em> lida com números, notas, porcentagens e gráficos (ex.: "75% dos alunos acertaram o desafio").
+              <br>, <em>Qualitativa:</em> lida com percepções, opiniões e sentimentos (ex.: "os alunos relataram se sentir mais confiantes").
+              <br>, <em>Mista (Quanti-Quali):</em> une números e opiniões (a mais comum e completa!).
+            </p>
+            <p style="margin: 0;"><strong>• Procedimentos Técnicos (O "Como Fazer"):</strong>
+              <br>, <em>Estudo de Caso:</em> você aplica e analisa sua solução em um grupo específico (ex.: uma turma do 1º período).
+              <br>, <em>Pesquisa-Ação:</em> o pesquisador participa ativamente da atividade junto com os alunos para melhorar o processo.
+              <br>, <em>Design Science Research (DSR , Ciência do Projeto):</em> metodologia muito usada na computação quando o foco principal é construir e testar um artefato tecnológico (um software, aplicativo ou jogo).
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="file-text" style="width: 20px; height: 20px;"></i></span> 2. Exemplo Prático: Metodologia do Nosso TCC de Gamificação</h3>
+          <div class="tech-example-box">
+            <span class="tech-example-badge">Exemplo Completo e Fácil de Adaptar</span>
+            <h4>Texto de Metodologia , Gamificação na Lógica de Programação</h4>
+            <div style="background-color: #ffffff; padding: var(--space-md); border-radius: var(--rounded); border: 1px solid var(--outline-light); font-size: 0.95rem; line-height: 1.72;">
+              <p>
+                "Quanto à sua natureza, esta pesquisa classifica-se como <strong>aplicada</strong>, pois visa gerar conhecimentos práticos voltados à melhoria do ensino de lógica de programação. Em relação aos objetivos, caracteriza-se como <strong>exploratória e descritiva</strong>, buscando compreender e descrever os efeitos de uma intervenção pedagógica gamificada. Quanto à abordagem do problema, adota-se o método <strong>misto (quantitativo e qualitativo)</strong>, combinando a análise numérica das pontuações dos alunos com a percepção subjetiva de motivação."
+              </p>
+              <p style="margin-bottom: 0;">
+                "Como procedimento técnico, realizou-se um <strong>estudo de caso</strong> com 25 estudantes iniciantes de um curso técnico/superior de informática. A pesquisa foi dividida em quatro etapas: (1) aplicação de um diagnóstico inicial para mapear dificuldades; (2) planejamento de uma trilha gamificada com 10 desafios de lógica divididos em níveis; (3) execução da atividade em laboratório durante duas aulas; e (4) aplicação de um questionário anônimo utilizando a <span class="term-explain">Escala Likert (escala de 1 a 5 que mede o grau de concordância do participante)</span> para avaliar engajamento e clareza."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 6 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Descreva a Metodologia do Seu Trabalho</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-6" class="student-textarea" oninput="syncSectionAndSave('missao-6')" placeholder="Descreva aqui:&#10;1. Tipo da sua pesquisa (Natureza, Objetivos, Abordagem e Procedimento);&#10;2. Passo a passo do que você vai fazer (Etapa 1, Etapa 2, Etapa 3...);&#10;3. Como vai coletar dados ou testar sua solução:"></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com a Sua Metodologia</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-6')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-6" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Leia o rascunho da minha metodologia abaixo. Verifique se a classificação da pesquisa (natureza, abordagem e procedimentos) combina com as etapas práticas que descrevi. Se algo estiver confuso ou faltando para que outra pessoa consiga repetir meu passo a passo, me aponte em tópicos sem reescrever meu texto:
+
+<span id="live-missao-6" class="prompt-dynamic-insert">[Escreva sua metodologia na caixa acima e ela aparecerá aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-7">✍️ Versão melhorada do texto, Missão 07</label>
+          <textarea id="improved-missao-7" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-7')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 06</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="6" onchange="updateProgress()">
+              <span>Classifiquei a pesquisa (Natureza, Objetivos, Abordagem e Procedimentos) de forma clara.</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="6" onchange="updateProgress()">
+              <span>Detalhei as etapas práticas e os instrumentos de coleta de dados ou testes.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 7: A CONSTRUÇÃO DA SOLUÇÃO / APLICAÇÃO -->
+    <!-- =================================================================== -->
+    <section id="missao-7" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="boxes" style="width: 14px; height: 14px;"></i> Missão 07</span>
+        <h2>A Ação do Filme: Desenvolvimento da Solução ou Experiência</h2>
+        <p class="mission-subtitle">Mostrando o que você construiu, organizou ou aplicou na prática</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="layout-grid" style="width: 20px; height: 20px;"></i></span> 1. O que escrever neste capítulo?</h3>
+          <p>
+            Aqui você conta a história do que você efetivamente fez na prática! Se você desenvolveu um sistema, aplicativo ou jogo, mostre a estrutura dele (telas principais, fluxo de funcionamento, regras). Se você aplicou uma dinâmica gamificada, mostre como os desafios foram organizados e quais regras de jogo foram usadas.
+          </p>
+
+          <!-- DIAGRAMA SVG DE FLUXO DA GAMIFICAÇÃO (CORRIGIDO E LEGÍVEL) -->
+          <div class="svg-diagram-card">
+            <h4 style="margin: 0 0 var(--space-sm) 0; color: var(--primary-dark); font-size: 1.05rem;">
+              <i data-lucide="workflow" style="width: 18px; height: 18px; vertical-align: middle;"></i> Fluxo da Dinâmica Gamificada de Lógica de Programação
+            </h4>
+            <div class="svg-diagram-wrapper">
+              <svg viewBox="0 0 820 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fluxo da Atividade Gamificada">
+                <!-- Etapa 1 -->
+                <rect x="15" y="45" width="170" height="110" rx="8" fill="#e8f5e9" stroke="#00703b" stroke-width="2.5" />
+                <text x="100" y="75" fill="#003e20" font-family="'Public Sans', sans-serif" font-weight="800" font-size="14" text-anchor="middle">Nível 1: Variáveis</text>
+                <text x="100" y="98" fill="#0f1715" font-family="'Public Sans', sans-serif" font-size="12" text-anchor="middle">3 Desafios Básicos</text>
+                <text x="100" y="120" fill="#00703b" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" text-anchor="middle">+100 XP | Medalha</text>
+
+                <!-- Seta 1 -->
+                <line x1="185" y1="100" x2="218" y2="100" stroke="#00703b" stroke-width="3" />
+                <polygon points="215,93 227,100 215,107" fill="#00703b" />
+
+                <!-- Etapa 2 -->
+                <rect x="228" y="45" width="175" height="110" rx="8" fill="#e0f2fe" stroke="#164e63" stroke-width="2.5" />
+                <text x="315" y="75" fill="#082f49" font-family="'Public Sans', sans-serif" font-weight="800" font-size="14" text-anchor="middle">Nível 2: Condicionais</text>
+                <text x="315" y="98" fill="#0f1715" font-family="'Public Sans', sans-serif" font-size="12" text-anchor="middle">Estruturas SE / SENÃO</text>
+                <text x="315" y="120" fill="#164e63" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" text-anchor="middle">+200 XP | Dica Extra</text>
+
+                <!-- Seta 2 -->
+                <line x1="403" y1="100" x2="436" y2="100" stroke="#164e63" stroke-width="3" />
+                <polygon points="433,93 445,100 433,107" fill="#164e63" />
+
+                <!-- Etapa 3 -->
+                <rect x="446" y="45" width="175" height="110" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2.5" />
+                <text x="533" y="75" fill="#78350f" font-family="'Public Sans', sans-serif" font-weight="800" font-size="14" text-anchor="middle">Nível 3: Repetição</text>
+                <text x="533" y="98" fill="#0f1715" font-family="'Public Sans', sans-serif" font-size="12" text-anchor="middle">Laços ENQUANTO / PARA</text>
+                <text x="533" y="120" fill="#b45309" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" text-anchor="middle">+300 XP | Chefão Final</text>
+
+                <!-- Seta 3 -->
+                <line x1="621" y1="100" x2="654" y2="100" stroke="#b45309" stroke-width="3" />
+                <polygon points="651,93 663,100 651,107" fill="#b45309" />
+
+                <!-- Etapa 4 -->
+                <rect x="664" y="45" width="142" height="110" rx="8" fill="#f3e8ff" stroke="#5b21b6" stroke-width="2.5" />
+                <text x="735" y="75" fill="#5b21b6" font-family="'Public Sans', sans-serif" font-weight="800" font-size="14" text-anchor="middle">Feedback</text>
+                <text x="735" y="98" fill="#0f1715" font-family="'Public Sans', sans-serif" font-size="12" text-anchor="middle">Placar & Conquistas</text>
+                <text x="735" y="120" fill="#5b21b6" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" text-anchor="middle">Revisão em Grupo</text>
+              </svg>
+            </div>
+            <p class="diagram-caption">Figura 2: Arquitetura pedagógica da trilha gamificada de lógica de programação.</p>
+          </div>
+        </div>
+
+        <div class="pitfalls-box">
+          <h4><i data-lucide="x-circle" style="width: 18px; height: 18px;"></i> Erros Comuns a Evitar:</h4>
+          <ul>
+            <li><strong>Colar páginas inteiras de código-fonte:</strong> Ninguém vai ler 10 páginas de código no Word. Se quiser mostrar código, escolha apenas um trecho pequeno e importante (10 a 20 linhas) e explique o que ele faz.</li>
+            <li><strong>Colocar prints de tela sem explicar:</strong> Toda imagem ou diagrama deve ter um título acima, a fonte abaixo (ex.: <em>Fonte: Elaborado pelo autor, 2026</em>) e um parágrafo explicando o que o leitor está vendo.</li>
+          </ul>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 7 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Descreva o que Você Desenvolveu ou Aplicou</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-7" class="student-textarea" oninput="syncSectionAndSave('missao-7')" placeholder="Explique aqui como funciona a sua solução, ferramenta, protótipo ou dinâmica prática..."></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com o Seu Desenvolvimento</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-7')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-7" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Leia a descrição do desenvolvimento do meu projeto abaixo. Avalie se alguém que nunca viu o meu projeto consegue entender como ele funciona na prática. Sugira onde eu poderia incluir um diagrama ou tabela para deixar a explicação ainda mais visual e didática:
+
+<span id="live-missao-7" class="prompt-dynamic-insert">[Escreva seu desenvolvimento na caixa acima e ele aparecerá aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-8">✍️ Versão melhorada do texto, Missão 08</label>
+          <textarea id="improved-missao-8" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-8')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 07</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="7" onchange="updateProgress()">
+              <span>Expliquei o funcionamento da solução de forma clara, sem despejar páginas de código bruto.</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="7" onchange="updateProgress()">
+              <span>Todas as figuras e diagramas estão legíveis e explicados no texto.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 8: RESULTADOS VS. DISCUSSÃO -->
+    <!-- =================================================================== -->
+    <section id="missao-8" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="trending-up" style="width: 14px; height: 14px;"></i> Missão 08</span>
+        <h2>O Clímax do Filme: Resultados vs. Discussão</h2>
+        <p class="mission-subtitle">Mostrar o que aconteceu (Resultados) e explicar o porquê disso (Discussão)</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="scale" style="width: 20px; height: 20px;"></i></span> 1. Qual a diferença entre Resultados e Discussão?</h3>
+          <p>Esse é o segredo que mais impressiona a banca examinadora:</p>
+          <div class="table-container">
+            <table class="tech-table">
+              <thead>
+                <tr>
+                  <th style="width: 50%;">RESULTADOS (O que você observou)</th>
+                  <th style="width: 50%;">DISCUSSÃO (O que isso significa)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    É a apresentação objetiva dos dados coletados:<br>
+                    • <em>"Antes da atividade gamificada, a média de acertos nos exercícios de laços de repetição era de 52%. Após a dinâmica, a média subiu para 84%."</em><br>
+                    • <em>"88% dos alunos afirmaram que os desafios em níveis reduziram a ansiedade."</em>
+                  </td>
+                  <td>
+                    É a interpretação e comparação com outros autores:<br>
+                    • <em>"Esse aumento de 32 pontos percentuais no desempenho confirma o que Silva e Souza (2023) apontaram sobre o efeito positivo do feedback imediato na aprendizagem de programação..."</em>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CALCULADORA SUS SIMPLIFICADA -->
+        <div class="interactive-card">
+          <div class="interactive-card-header">
+            <i data-lucide="sliders" style="width: 24px; height: 24px; color: var(--primary);"></i>
+            <div>
+              <h4 style="margin: 0; font-size: 1.1rem;">Ferramenta Bônus: Calculadora SUS (<span class="term-explain">System Usability Scale , Escala de Usabilidade de Sistema</span>)</h4>
+              <p style="margin: 2px 0 0 0; font-size: 0.85rem; color: var(--on-surface-variant);">
+                Se o seu TCC envolve avaliar um software, jogo ou plataforma com usuários, use este questionário padrão de 10 perguntas para gerar uma nota científica de 0 a 100!
+              </p>
+            </div>
+          </div>
+
+          <div id="sus-questions-container">
+            <div class="sus-question-row">
+              <span class="sus-question-text">1. Eu acho que gostaria de usar este sistema/atividade com frequência.</span>
+              <select class="sus-scale-select" data-q="1" onchange="calculateSUS()">
+                <option value="1">1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5" selected>5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">2. Eu achei o sistema desnecessariamente complexo.</span>
+              <select class="sus-scale-select" data-q="2" onchange="calculateSUS()">
+                <option value="1" selected>1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5">5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">3. Eu achei o sistema fácil de usar.</span>
+              <select class="sus-scale-select" data-q="3" onchange="calculateSUS()">
+                <option value="1">1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5" selected>5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">4. Eu precisaria de ajuda técnica para conseguir usar o sistema.</span>
+              <select class="sus-scale-select" data-q="4" onchange="calculateSUS()">
+                <option value="1" selected>1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5">5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">5. As várias funções do sistema estavam muito bem integradas.</span>
+              <select class="sus-scale-select" data-q="5" onchange="calculateSUS()">
+                <option value="1">1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4" selected>4 - Concordo</option>
+                <option value="5">5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">6. Havia muita inconsistência neste sistema.</span>
+              <select class="sus-scale-select" data-q="6" onchange="calculateSUS()">
+                <option value="1" selected>1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5">5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">7. A maioria das pessoas aprenderia a usar este sistema rapidamente.</span>
+              <select class="sus-scale-select" data-q="7" onchange="calculateSUS()">
+                <option value="1">1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5" selected>5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">8. Eu achei o sistema muito complicado de usar.</span>
+              <select class="sus-scale-select" data-q="8" onchange="calculateSUS()">
+                <option value="1" selected>1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5">5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">9. Eu me senti muito confiante usando o sistema.</span>
+              <select class="sus-scale-select" data-q="9" onchange="calculateSUS()">
+                <option value="1">1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5" selected>5 - Concordo totalmente</option>
+              </select>
+            </div>
+            <div class="sus-question-row">
+              <span class="sus-question-text">10. Eu precisei aprender muitas coisas novas antes de usar o sistema.</span>
+              <select class="sus-scale-select" data-q="10" onchange="calculateSUS()">
+                <option value="1" selected>1 - Discordo totalmente</option>
+                <option value="2">2 - Discordo</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Concordo</option>
+                <option value="5">5 - Concordo totalmente</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--space-md); padding: var(--space-md); background-color: var(--surface-container-low); border-radius: var(--rounded); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-md);">
+            <div>
+              <span style="font-size: 0.8rem; font-family: var(--font-label); text-transform: uppercase; color: var(--on-surface-variant);">Nota SUS Calculada:</span>
+              <div style="display: flex; align-items: baseline; gap: var(--space-sm);">
+                <span class="sus-result-badge" id="sus-score-display">95.0</span>
+                <span id="sus-classification" style="font-weight: 700; color: var(--primary);">Excelente (Grau A+)</span>
+              </div>
+            </div>
+            <div style="max-width: 420px; font-size: 0.85rem; color: var(--on-surface-variant);">
+              <em>Como escrever no TCC:</em> "A avaliação de usabilidade alcançou pontuação SUS de <strong id="sus-score-cite">95.0</strong>, superando a média de referência da literatura (68.0 pontos)."
+            </div>
+          </div>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 8 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Escreva seus Resultados e Discussão</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-8" class="student-textarea" oninput="syncSectionAndSave('missao-8')" placeholder="Escreva aqui os principais dados/resultados que você obteve (ou espera obter) e explique o porquê desses resultados..."></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com os Seus Resultados</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-8')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-8" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Analise o trecho de Resultados e Discussão que escrevi abaixo. Verifique se eu apenas apresentei números/fatos ou se também expliquei o significado deles. Me dê 2 dicas de como conectar melhor meus achados com os autores da área sem inventar dados:
+
+<span id="live-missao-8" class="prompt-dynamic-insert">[Escreva seus resultados na caixa acima e eles aparecerá aqui automaticamente]</span></pre>
+          </div>
+          <label class="improved-text-label" for="improved-missao-9">✍️ Versão melhorada do texto, Missão 09</label>
+          <textarea id="improved-missao-9" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-9')"
+            placeholder="Depois de consultar a IA, cole aqui sua versão revisada. Confira as sugestões, mantenha sua autoria e valide as informações."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 08</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="8" onchange="updateProgress()">
+              <span>Apresentei meus dados de forma clara (gráficos, tabelas ou relatos).</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="8" onchange="updateProgress()">
+              <span>Interpretei os resultados comparando com outros autores da Fundamentação Teórica.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 9: CONSIDERAÇÕES FINAIS -->
+    <!-- =================================================================== -->
+    <section id="missao-9" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="flag" style="width: 14px; height: 14px;"></i> Missão 09</span>
+        <h2>O Desfecho do Filme: Considerações Finais</h2>
+        <p class="mission-subtitle">Amarrando todas as pontas: Resposta aos Objetivos, Limitações e Próximos Passos</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="file-check-2" style="width: 20px; height: 20px;"></i></span> 1. Os 3 ingredientes de uma boa Conclusão</h3>
+          <ol>
+            <li><strong>Retomada dos Objetivos:</strong> Diga claramente que o objetivo geral e os específicos foram alcançados e resuma a principal descoberta.</li>
+            <li><strong>Limitações do Trabalho:</strong> Seja sincero(a)! Nenhuma pesquisa resolve tudo. Ex.: <em>"O estudo foi aplicado em apenas uma turma de 25 alunos durante duas semanas"</em>. A banca adora essa honestidade!</li>
+            <li><strong>Trabalhos Futuros:</strong> Deixe ideias para quem quiser continuar sua pesquisa (ex.: testar em outras turmas, criar um aplicativo mobile).</li>
+          </ol>
+        </div>
+
+        <div class="tech-example-box">
+          <span class="tech-example-badge">Exemplo Simples</span>
+          <h4>Considerações Finais , Gamificação na Lógica de Programação</h4>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.72;">
+            <em>"Este trabalho alcançou seu objetivo ao avaliar o impacto da gamificação no aprendizado de lógica de programação. Os resultados indicaram que o uso de níveis, pontuações e desafios progressivos aumentou o engajamento dos estudantes e melhorou o desempenho na resolução de algoritmos básicos. Como limitação, destaca-se o tamanho reduzido da amostra (uma única turma) e o curto período de aplicação. Para trabalhos futuros, sugere-se acompanhar os estudantes ao longo de todo o semestre letivo e desenvolver uma plataforma web própria para automatizar o ranking e as conquistas."</em>
+          </p>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 9 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Escreva suas Considerações Finais</h4>
+            <span class="live-sync-pill"><i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i> Sincronizado com o Prompt</span>
+          </div>
+          <textarea id="write-missao-9" class="student-textarea" oninput="syncSectionAndSave('missao-9')" placeholder="Escreva aqui o fechamento do seu trabalho:&#10;1. Resposta aos objetivos:&#10;2. Limitações sinceras da pesquisa:&#10;3. Sugestões de trabalhos futuros:"></textarea>
+          
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span><i data-lucide="sparkles" style="width: 13px; height: 13px; vertical-align: middle;"></i> Prompt Pronto com a Sua Conclusão</span>
+              <button class="copy-btn copy-btn-purple" onclick="copyCodeText('prompt-missao-9')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Prompt</button>
+            </div>
+            <pre id="prompt-missao-9" style="margin: 0; white-space: pre-wrap; font-family: inherit;">Leia as Considerações Finais que escrevi abaixo. Verifique se eu respondi ao objetivo do trabalho, se apontei limitações reais e sugestões de trabalhos futuros, e garanta que não há nenhuma citação nova perdida aqui. Sugira ajustes de clareza sem alterar minha voz autoral:
+
+<span id="live-missao-9" class="prompt-dynamic-insert">[Escreva suas considerações finais na caixa acima e elas aparecerão aqui automaticamente]</span></pre>
+          </div>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist da Missão 09</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="9" onchange="updateProgress()">
+              <span>Respondi ao Objetivo Geral sem incluir citações novas na conclusão.</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="9" onchange="updateProgress()">
+              <span>Apresentei limitações honestas e sugestões de trabalhos futuros.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- MISSÃO 10: REFERÊNCIAS ABNT & DECLARAÇÃO ÉTICA DE USO DE IA -->
+    <!-- =================================================================== -->
+    <section id="missao-10" class="mission-section">
+      <div class="mission-header">
+        <span class="mission-tag"><i data-lucide="shield-check" style="width: 14px; height: 14px;"></i> Missão 10</span>
+        <h2>Os Créditos Finais: Referências ABNT & Declaração Ética de IA</h2>
+        <p class="mission-subtitle">Dando os devidos créditos aos autores e declarando o uso responsável da IA</p>
+      </div>
+
+      <div class="mission-pillars">
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="shield" style="width: 20px; height: 20px;"></i></span> 1. Por que declarar o uso de IA?</h3>
+          <p>
+            Usar Inteligência Artificial para ter ideias, organizar tópicos ou revisar a ortografia <strong>não é proibido</strong> , o que é antiético (e perigoso!) é fingir que não usou ou deixar a máquina escrever o trabalho inteiro no seu lugar. Quando você declara com transparência na Metodologia como usou a IA, você demonstra ética científica, segurança jurídica e maturidade acadêmica!
+          </p>
+
+          <div class="tech-example-box">
+            <span class="tech-example-badge">Modelo Pronto para Copiar e Adaptar</span>
+            <h4>Declaração de Uso Ético de Inteligência Artificial</h4>
+            <div class="code-box">
+              <div class="code-box-header">
+                <span>TEXTO MODELO PARA INSERIR NA METODOLOGIA DO SEU TCC</span>
+                <button class="copy-btn" onclick="copyCodeText('declaracao-ia-texto')"><i data-lucide="copy" style="width: 12px; height: 12px;"></i> Copiar Declaração</button>
+              </div>
+<pre id="declaracao-ia-texto" style="margin:0; font-family: inherit;">DECLARAÇÃO DE USO DE FERRAMENTAS DE INTELIGÊNCIA ARTIFICIAL
+
+Em conformidade com as boas práticas de integridade científica, declara-se que 
+ferramentas de Inteligência Artificial (como [citar ferramentas usadas, ex.: ChatGPT, 
+Gemini, Consensus, NotebookLM]) foram utilizadas exclusivamente como apoio auxiliar 
+durante a elaboração deste trabalho, especificamente para:
+1) Organização preliminar de ideias e estruturação de tópicos do sumário;
+2) Busca e triagem de artigos científicos reais em bases indexadas;
+3) Sugestões de revisão gramatical, clareza textual e tradução do resumo (Abstract).
+
+Todo o desenvolvimento conceitual, a redação autoral, a aplicação prática, a análise 
+dos dados e as conclusões apresentadas foram integralmente conduzidos, verificados e 
+validados pelo(a) autor(a), que assume total responsabilidade ética e acadêmica pelo 
+conteúdo deste documento.</pre>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="pillar-title"><span class="pillar-icon"><i data-lucide="book" style="width: 20px; height: 20px;"></i></span> 2. Dica para Referências (<span class="term-explain">ABNT NBR 6023 , norma que padroniza como listar livros, sites e artigos no final do TCC</span>)</h3>
+          <p>
+            Não sofra formatando referências na mão! Use gerenciadores gratuitos como o <a href="https://www.zotero.org/" target="_blank" rel="noopener noreferrer"><strong>Zotero (zotero.org)</strong></a> ou o <a href="https://www.mendeley.com/" target="_blank" rel="noopener noreferrer"><strong>Mendeley (mendeley.com)</strong></a> para salvar seus artigos e gerar a lista em ordem alfabética automaticamente.
+          </p>
+        </div>
+
+        <!-- Oficina do Aluno - Missão 10 -->
+        <div class="student-workshop-card">
+          <div class="workshop-header">
+            <h4><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i> Sua Vez! Registre suas Referências e sua Declaração de IA</h4>
+          </div>
+          <textarea id="write-missao-10" class="student-textarea" oninput="syncSectionAndSave('missao-10')" placeholder="Cole ou adapte aqui a sua Declaração de Uso de IA e anote os autores/artigos que você já separou para as suas Referências..."></textarea>
+          <label class="improved-text-label" for="improved-missao-10">✍️ Versão melhorada, Missão 10</label>
+          <textarea id="improved-missao-10" class="improved-textarea"
+            oninput="syncImprovedAndSave('missao-10')"
+            placeholder="Insira aqui a versão revisada das referências e da declaração de uso de IA."></textarea>
+        </div>
+
+        <div class="mission-checklist-card">
+          <h4 class="checklist-title"><i data-lucide="check-square" style="width: 20px; height: 20px;"></i> Checklist Final da Missão 10</h4>
+          <div class="checklist-items">
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="10" onchange="updateProgress()">
+              <span>Adaptei e incluí a Declaração de Uso Ético de IA no meu rascunho.</span>
+            </label>
+            <label class="checklist-label">
+              <input type="checkbox" class="checklist-checkbox" data-mission="10" onchange="updateProgress()">
+              <span>Verifiquei que todas as citações usadas no texto são de fontes reais e confiáveis.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- EXPORTAÇÃO FINAL PARA .DOC (WORD / LIBREOFFICE / GOOGLE DOCS) -->
+    <!-- =================================================================== -->
+    <section class="export-doc-card" id="exportar-doc">
+      <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
+        <i data-lucide="file-check" style="width: 28px; height: 28px; color: #1d4ed8;"></i>
+        <h3 style="margin: 0; font-size: 1.35rem; color: #1e3a8a;">Pronto para Dar o Próximo Passo? Salve sua Escrita em .DOC!</h3>
+      </div>
+      <p style="margin: 0 0 var(--space-md) 0; color: var(--on-surface);">
+        Parabéns por chegar até aqui! Todos os rascunhos que você escreveu nos quadrados ao longo deste guia podem ser reunidos agora mesmo em um arquivo <strong>.doc</strong> organizado, pronto para você abrir no Word, LibreOffice Writer ou Google Docs e mostrar ao seu orientador(a)!
+      </p>
+      <p style="margin: 8px 0;">Cada tópico do TCC será exportado com seu título e o conteúdo digitado. Na versão completa, o documento apresenta o texto original e, logo depois, o espaço preenchido com a versão melhorada.</p>
+      <label class="form-label" for="export-mode">O que deseja incluir no arquivo?</label>
+      <select id="export-mode" class="export-mode-select">
+        <option value="complete">Versão completa: texto original + versão melhorada</option>
+        <option value="improved">Somente a versão melhorada</option>
+      </select>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-md);">
+        <div>
+          <label class="form-label" for="student-name-input">Seu Nome Completo:</label>
+          <input type="text" id="student-name-input" class="form-control" placeholder="Ex.: Maria Silva Santos" oninput="saveStudentMeta()">
+        </div>
+        <div>
+          <label class="form-label" for="student-title-input">Título Provisório do TCC:</label>
+          <input type="text" id="student-title-input" class="form-control" placeholder="Ex.: O impacto da gamificação no aprendizado..." oninput="saveStudentMeta()">
+        </div>
+      </div>
+      <button onclick="exportAllToDoc()" class="btn btn-doc-export" style="font-size: 0.95rem; padding: 12px 22px;">
+        <i data-lucide="download" style="width: 18px; height: 18px;"></i> Baixar Meu Rascunho Completo (.doc)
+      </button>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- SIMULADOR DE ROTEIRO PARA GERAR IDEIAS -->
+    <!-- =================================================================== -->
+    <section id="gerador-roteiro" class="interactive-card" style="margin-top: var(--space-2xl);">
+      <div class="interactive-card-header">
+        <i data-lucide="wand-2" style="width: 26px; height: 26px; color: var(--primary);"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 1.25rem; color: var(--primary-dark);">Simulador de Ideias: Destravando o Tema</h3>
+          <p style="margin: 2px 0 0 0; font-size: 0.88rem; color: var(--on-surface-variant);">
+            Escolha um tema abaixo para ver como fica a estrutura básica (Espinha Dorsal) antes de começar!
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="sim-tema">Escolha um exemplo de tema:</label>
+        <select id="sim-tema" class="form-control" onchange="generateScript()">
+          <option value="gamificacao-logica" selected>Impacto da Gamificação no Aprendizado de Lógica de Programação (Tema Guia)</option>
+          <option value="app-educacional">Desenvolvimento de Aplicativo Mobile para Apoio aos Estudos</option>
+          <option value="analise-dados">Análise de Dados Educacionais para Identificar Risco de Evasão</option>
+          <option value="automacao-iot">Protótipo de Automação Residencial de Baixo Custo com Arduino/ESP32</option>
+        </select>
+      </div>
+
+      <div style="background-color: var(--surface-container-low); border: 1px solid var(--outline-variant); border-radius: var(--rounded); padding: var(--space-md);">
+        <div id="script-output" style="font-size: 0.94rem; line-height: 1.68;"></div>
+      </div>
+    </section>
+
+  </main>
+  <span class="badge-mentor"><i data-lucide="book-open" style="width: 13px; height: 13px;"></i> Guia Prático da Prof.ª Suzana Mota, gerado com apoio de Notebook LM + Claude, sob a supervisão e revisão da Prof. SUzana</span>
+</div>
+
+<!-- Notificação Toast -->
+<div id="app-toast" class="toast-msg">Ação realizada!</div>
+
+<script>
+  if (typeof lucide !== 'undefined' && lucide.createIcons) {
+    lucide.createIcons();
+  }
+
+  const STORAGE_KEY = 'guia_monografia_suzana_mota_v3';
+
+  const appState = {
+    checkedMissions: {},
+    susAnswers: { 1: 5, 2: 1, 3: 5, 4: 1, 5: 4, 6: 1, 7: 5, 8: 1, 9: 5, 10: 1 },
+    spineFields: {
+      problema: '',
+      pergunta: '',
+      objGeral: '',
+      objEspecificos: ''
+    },
+    studentTexts: {},
+    improvedTexts: {},
+    studentName: '',
+    studentTitle: ''
+  };
+
+  const SPINE_PLACEHOLDERS = {
+    problema: '[Preencha o 1º quadrado acima e seu texto aparecerá aqui automaticamente]',
+    pergunta: '[Preencha o 2º quadrado acima e seu texto aparecerá aqui automaticamente]',
+    objGeral: '[Preencha o 3º quadrado acima e seu texto aparecerá aqui automaticamente]',
+    objEspecificos: '[Preencha o 4º quadrado acima e seu texto aparecerá aqui automaticamente]'
+  };
+
+  const SECTION_PLACEHOLDERS = {
+    'missao-1': '[Escreva seu sumário na caixa acima e ele aparecerá aqui automaticamente]',
+    'missao-2': '[Escreva sua introdução na caixa acima e ela aparecerá aqui automaticamente]',
+    'missao-3': '[Escreva sua justificativa na caixa acima e ela aparecerá aqui automaticamente]',
+    'missao-4': '[Escreva seus objetivos na caixa acima e eles aparecerão aqui automaticamente]',
+    'missao-5': '[Escreva seu trecho na caixa acima e ele aparecerá aqui automaticamente]',
+    'missao-6': '[Escreva sua metodologia na caixa acima e ela aparecerá aqui automaticamente]',
+    'missao-7': '[Escreva seu desenvolvimento na caixa acima e ele aparecerá aqui automaticamente]',
+    'missao-8': '[Escreva seus resultados na caixa acima e eles aparecerão aqui automaticamente]',
+    'missao-9': '[Escreva suas considerações finais na caixa acima e elas aparecerão aqui automaticamente]'
+  };
+
+  function updateSpineLivePrompt() {
+    const map = [
+      { key: 'problema', inputId: 'write-spine-problema', liveId: 'live-spine-problema' },
+      { key: 'pergunta', inputId: 'write-spine-pergunta', liveId: 'live-spine-pergunta' },
+      { key: 'objGeral', inputId: 'write-spine-obj-geral', liveId: 'live-spine-obj-geral' },
+      { key: 'objEspecificos', inputId: 'write-spine-obj-especificos', liveId: 'live-spine-obj-especificos' }
+    ];
+
+    map.forEach(item => {
+      const inputEl = document.getElementById(item.inputId);
+      const liveEl = document.getElementById(item.liveId);
+      const val = inputEl ? inputEl.value.trim() : '';
+      appState.spineFields[item.key] = inputEl ? inputEl.value : '';
+      if (liveEl) {
+        liveEl.textContent = val ? inputEl.value : SPINE_PLACEHOLDERS[item.key];
+      }
+    });
+  }
+
+  function syncSpineAndSave() {
+    updateSpineLivePrompt();
+    saveLocalState();
+  }
+
+  function updateSectionLivePrompt(sectionId) {
+    const inputEl = document.getElementById('write-' + sectionId);
+    const liveEl = document.getElementById('live-' + sectionId);
+    if (inputEl) {
+      appState.studentTexts[sectionId] = inputEl.value;
+      if (liveEl) {
+        const val = inputEl.value.trim();
+        liveEl.textContent = val ? inputEl.value : (SECTION_PLACEHOLDERS[sectionId] || '');
+      }
+    }
+  }
+
+  function syncSectionAndSave(sectionId) {
+    updateSectionLivePrompt(sectionId);
+    saveLocalState();
+  }
+
+  function loadLocalState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        Object.assign(appState, parsed);
+        appState.improvedTexts = appState.improvedTexts || {};
+      }
+    } catch (e) {
+      console.warn('Não foi possível ler o armazenamento local:', e);
+    }
+
+    // Restaurar checkboxes
+    const checkboxes = document.querySelectorAll('.checklist-checkbox');
+    checkboxes.forEach((cb, idx) => {
+      if (appState.checkedMissions[idx] !== undefined) {
+        cb.checked = appState.checkedMissions[idx];
+      }
+    });
+
+    // Restaurar SUS
+    const selects = document.querySelectorAll('.sus-scale-select');
+    selects.forEach(sel => {
+      const q = sel.getAttribute('data-q');
+      if (appState.susAnswers[q]) {
+        sel.value = appState.susAnswers[q];
+      }
+    });
+
+    // Restaurar os 4 quadrados da Espinha Dorsal
+    if (appState.spineFields) {
+      const pEl = document.getElementById('write-spine-problema');
+      const qEl = document.getElementById('write-spine-pergunta');
+      const ogEl = document.getElementById('write-spine-obj-geral');
+      const oeEl = document.getElementById('write-spine-obj-especificos');
+      if (pEl && appState.spineFields.problema) pEl.value = appState.spineFields.problema;
+      if (qEl && appState.spineFields.pergunta) qEl.value = appState.spineFields.pergunta;
+      if (ogEl && appState.spineFields.objGeral) ogEl.value = appState.spineFields.objGeral;
+      if (oeEl && appState.spineFields.objEspecificos) oeEl.value = appState.spineFields.objEspecificos;
+    }
+    updateSpineLivePrompt();
+
+    // Restaurar textos das missões 1 a 10 e sincronizar prompts
+    const sections = ['missao-1', 'missao-2', 'missao-3', 'missao-4', 'missao-5', 'missao-6', 'missao-7', 'missao-8', 'missao-9', 'missao-10'];
+    sections.forEach(sec => {
+      const el = document.getElementById('write-' + sec);
+      if (el && appState.studentTexts[sec]) {
+        el.value = appState.studentTexts[sec];
+      }
+      updateSectionLivePrompt(sec);
+      const improvedEl = document.getElementById('improved-' + sec);
+      if (improvedEl && appState.improvedTexts && appState.improvedTexts[sec]) {
+        improvedEl.value = appState.improvedTexts[sec];
+      }
+    });
+    const improvedSpine = document.getElementById('improved-espinha-dorsal');
+    if (improvedSpine && appState.improvedTexts && appState.improvedTexts['espinha-dorsal']) {
+      improvedSpine.value = appState.improvedTexts['espinha-dorsal'];
+    }
+
+    const nameInput = document.getElementById('student-name-input');
+    const titleInput = document.getElementById('student-title-input');
+    if (nameInput && appState.studentName) nameInput.value = appState.studentName;
+    if (titleInput && appState.studentTitle) titleInput.value = appState.studentTitle;
+
+    updateProgress();
+    calculateSUS();
+    generateScript();
+  }
+
+  function saveLocalState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    } catch (e) {
+      console.warn('Falha ao salvar localmente:', e);
+    }
+  }
+
+  function saveStudentMeta() {
+    const nameInput = document.getElementById('student-name-input');
+    const titleInput = document.getElementById('student-title-input');
+    if (nameInput) appState.studentName = nameInput.value;
+    if (titleInput) appState.studentTitle = titleInput.value;
+    saveLocalState();
+  }
+
+  function updateProgress() {
+    const checkboxes = document.querySelectorAll('.checklist-checkbox');
+    let total = checkboxes.length;
+    let checked = 0;
+
+    checkboxes.forEach((cb, idx) => {
+      appState.checkedMissions[idx] = cb.checked;
+      if (cb.checked) checked++;
+    });
+
+    const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
+    const bar = document.getElementById('global-progress-bar');
+    const text = document.getElementById('global-progress-text');
+    const count = document.getElementById('completed-count');
+
+    if (bar) bar.style.width = percent + '%';
+    if (text) text.textContent = percent + '% Concluído';
+
+    let validatedMissions = 0;
+    for (let m = 1; m <= 10; m++) {
+      const missionBoxes = document.querySelectorAll(`.checklist-checkbox[data-mission="${m}"]`);
+      if (missionBoxes.length > 0) {
+        let allChecked = true;
+        missionBoxes.forEach(b => { if (!b.checked) allChecked = false; });
+        if (allChecked) validatedMissions++;
+      }
+    }
+    if (count) count.textContent = validatedMissions;
+
+    saveLocalState();
+  }
+
+  function calculateSUS() {
+    const selects = document.querySelectorAll('.sus-scale-select');
+    let oddSum = 0;
+    let evenSum = 0;
+
+    selects.forEach(sel => {
+      const q = parseInt(sel.getAttribute('data-q'), 10);
+      const val = parseInt(sel.value, 10);
+      appState.susAnswers[q] = val;
+
+      if (q % 2 !== 0) {
+        oddSum += (val - 1);
+      } else {
+        evenSum += (5 - val);
+      }
+    });
+
+    const susScore = (oddSum + evenSum) * 2.5;
+    const scoreFixed = susScore.toFixed(1);
+
+    const display = document.getElementById('sus-score-display');
+    const cite = document.getElementById('sus-score-cite');
+    const classif = document.getElementById('sus-classification');
+
+    if (display) display.textContent = scoreFixed;
+    if (cite) cite.textContent = scoreFixed;
+
+    if (classif) {
+      if (susScore >= 85) {
+        classif.textContent = 'Excelente (Grau A+)';
+        classif.style.color = 'var(--primary)';
+      } else if (susScore >= 70) {
+        classif.textContent = 'Bom / Acima da Média (Grau B)';
+        classif.style.color = 'var(--secondary)';
+      } else if (susScore >= 50) {
+        classif.textContent = 'Regular (Grau C)';
+        classif.style.color = 'var(--warning)';
+      } else {
+        classif.textContent = 'Precisa Melhorar (Grau F)';
+        classif.style.color = 'var(--error)';
+      }
+    }
+    saveLocalState();
+  }
+
+  function generateScript() {
+    const tema = document.getElementById('sim-tema') ? document.getElementById('sim-tema').value : 'gamificacao-logica';
+    const output = document.getElementById('script-output');
+    if (!output) return;
+
+    const templates = {
+      'gamificacao-logica': `
+        <p><strong>Problema:</strong> Alunos iniciantes têm dificuldade em visualizar conceitos abstratos de lógica de programação e perdem a motivação com listas tradicionais.</p>
+        <p><strong>Pergunta de Pesquisa:</strong> De que forma mecânicas de gamificação (pontos, níveis e feedback imediato) impactam o engajamento e o aprendizado de lógica de programação em alunos iniciantes?</p>
+        <p><strong>Objetivo Geral:</strong> Avaliar o impacto da gamificação no aprendizado e na motivação de estudantes iniciantes de lógica de programação.</p>
+        <p style="margin-bottom:0;"><strong>Metodologia Sugerida:</strong> Pesquisa Aplicada, Mista (Quanti-Quali), Estudo de Caso com questionário de percepção.</p>
+      `,
+      'app-educacional': `
+        <p><strong>Problema:</strong> Estudantes têm dificuldade em organizar horários de revisão e acompanhar seu próprio progresso fora da sala de aula.</p>
+        <p><strong>Pergunta de Pesquisa:</strong> Como um aplicativo mobile com lembretes inteligentes e trilhas curtas de estudo pode auxiliar na organização e retenção de conteúdos de estudantes?</p>
+        <p><strong>Objetivo Geral:</strong> Desenvolver e avaliar a usabilidade de um aplicativo mobile voltado ao apoio organizacional de estudantes.</p>
+        <p style="margin-bottom:0;"><strong>Metodologia Sugerida:</strong> Design Science Research (DSR) com avaliação de usabilidade pela escala SUS.</p>
+      `,
+      'analise-dados': `
+        <p><strong>Problema:</strong> Coordenações de curso muitas vezes só percebem que um aluno está com risco de desistir quando ele já reprovou nas avaliações finais.</p>
+        <p><strong>Pergunta de Pesquisa:</strong> Quais indicadores acadêmicos (frequência, entrega de atividades, notas iniciais) possuem maior relação com a evasão escolar nos primeiros semestres?</p>
+        <p><strong>Objetivo Geral:</strong> Analisar dados históricos acadêmicos para identificar padrões associados à evasão discente.</p>
+        <p style="margin-bottom:0;"><strong>Metodologia Sugerida:</strong> Pesquisa Quantitativa, Exploratória e Descritiva com análise estatística e visualização de dados.</p>
+      `,
+      'automacao-iot': `
+        <p><strong>Problema:</strong> O desperdício de energia elétrica em salas de aula vazias com luzes e aparelhos ligados gera custos desnecessários para instituições de ensino.</p>
+        <p><strong>Pergunta de Pesquisa:</strong> De que maneira um protótipo de automação baseado em microcontroladores de baixo custo pode monitorar e otimizar o consumo energético em ambientes escolares?</p>
+        <p><strong>Objetivo Geral:</strong> Projetar e testar um protótipo de automação IoT para controle inteligente de iluminação e climatização.</p>
+        <p style="margin-bottom:0;"><strong>Metodologia Sugerida:</strong> Pesquisa Experimental e Prototipagem com testes de bancada.</p>
+      `
+    };
+
+    output.innerHTML = templates[tema] || templates['gamificacao-logica'];
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('app-toast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+
+  function copyCodeText(elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    const text = el.innerText || el.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      showToast("Prompt com seu texto copiado! Agora é só colar na IA.");
+    }).catch(() => {
+      showToast("Selecione o texto e pressione Ctrl+C para copiar.");
+    });
+  }
+
+
+  function escapeHtml(str) {
+    const value = (str == null ? '' : String(str)).trim();
+    if (!value) return '<em>(Ainda não preenchido pelo aluno)</em>';
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+      .replace(/\r\n|\r|\n/g, '<br />');
+  }
+
+  function syncImprovedAndSave(sectionId) {
+    const field = document.getElementById('improved-' + sectionId);
+    if (field) appState.improvedTexts[sectionId] = field.value;
+    saveLocalState();
+  }
+
+  function exportAllToDoc() {
+    saveStudentMeta();
+
+    // Atualiza os campos antes da exportação, mesmo se o usuário não tiver
+    // disparado o evento de digitação no último campo.
+    document.querySelectorAll('.student-textarea').forEach(el => {
+      const id = el.id.replace('write-', '');
+      appState.studentTexts[id] = el.value;
+    });
+    document.querySelectorAll('.improved-textarea').forEach(el => {
+      const id = el.id.replace('improved-', '');
+      appState.improvedTexts[id] = el.value;
+    });
+    updateSpineLivePrompt();
+    saveLocalState();
+
+    const studentName = appState.studentName.trim() || 'Estudante Pesquisador(a)';
+    const studentTitle = appState.studentTitle.trim() || 'Rascunho Estruturado de Monografia';
+    const mode = (document.getElementById('export-mode') || {}).value || 'complete';
+
+    const sectionsMap = [
+      { id: 'missao-1', title: '1. SUMÁRIO PROVISÓRIO' },
+      { id: 'missao-2', title: '2. INTRODUÇÃO' },
+      { id: 'missao-3', title: '3. JUSTIFICATIVA E PROBLEMA DE PESQUISA' },
+      { id: 'missao-4', title: '4. OBJETIVO GERAL E OBJETIVOS ESPECÍFICOS' },
+      { id: 'missao-5', title: '5. FUNDAMENTAÇÃO TEÓRICA E TRABALHOS RELACIONADOS' },
+      { id: 'missao-6', title: '6. METODOLOGIA' },
+      { id: 'missao-7', title: '7. DESENVOLVIMENTO DA SOLUÇÃO / EXPERIÊNCIA' },
+      { id: 'missao-8', title: '8. RESULTADOS E DISCUSSÃO' },
+      { id: 'missao-9', title: '9. CONSIDERAÇÕES FINAIS' },
+      { id: 'missao-10', title: '10. REFERÊNCIAS E DECLARAÇÃO DE USO DE IA' }
+    ];
+
+    // Mantém cada campo em um bloco simples, com rótulo separado do texto.
+    // white-space: pre-wrap preserva as quebras de linha digitadas pelo estudante.
+    const paragraph = (label, value) => {
+      const content = String(value || '').trim();
+      return `
+        <div class="student-field">
+          <p class="field-label"><strong>${label}</strong></p>
+          <p class="field-content">${content ? escapeHtml(content) : '<span class="empty-field">Não preenchido.</span>'}</p>
+        </div>`;
+    };
+
+    let bodySections = '';
+    const improvedSpine = String(appState.improvedTexts['espinha-dorsal'] || '').trim();
+
+    // Na versão completa, inclui o rascunho original da espinha dorsal e,
+    // quando preenchida, também a versão revisada pelo estudante.
+    if (mode === 'complete') {
+      bodySections += `
+        <h2>PASSO 00. ESPINHA DORSAL DO TCC</h2>
+        ${paragraph('Problema que desejo resolver:', appState.spineFields.problema)}
+        ${paragraph('Pergunta de pesquisa:', appState.spineFields.pergunta)}
+        ${paragraph('Objetivo geral:', appState.spineFields.objGeral)}
+        ${paragraph('Objetivos específicos:', appState.spineFields.objEspecificos)}
+      `;
+      if (improvedSpine) {
+        bodySections += `
+          <h2>VERSÃO MELHORADA DA ESPINHA DORSAL</h2>
+          ${paragraph('Versão revisada pelo(a) estudante após consulta à IA:', improvedSpine)}
+        `;
+      }
+    } else if (improvedSpine) {
+      // No modo somente melhorada, a espinha dorsal revisada também deve aparecer.
+      bodySections += `
+        <h2>PASSO 00. VERSÃO MELHORADA DA ESPINHA DORSAL DO TCC</h2>
+        ${paragraph('Versão revisada pelo(a) estudante após consulta à IA:', improvedSpine)}
+      `;
+    }
+
+    // Exemplo didático exibido na página. Ele nunca deve ser tratado como
+    // conteúdo produzido pelo estudante na exportação do documento.
+    const sumarioExemplo = document.getElementById('sumario-exemplo')?.textContent || '';
+    const normalizeText = value => String(value || '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLocaleLowerCase('pt-BR');
+
+    sectionsMap.forEach(sec => {
+      let original = appState.studentTexts[sec.id] || '';
+      let improved = appState.improvedTexts[sec.id] || '';
+
+      // Remove o sumário-modelo caso ele tenha sido copiado ou salvo por engano
+      // em qualquer um dos campos da Missão 01.
+      if (sec.id === 'missao-1') {
+        const exemploNormalizado = normalizeText(sumarioExemplo);
+        if (normalizeText(original) === exemploNormalizado) original = '';
+        if (normalizeText(improved) === exemploNormalizado) improved = '';
+      }
+
+      // Ignora campos vazios e placeholders, sem criar seções artificiais no DOC.
+      const isPlaceholder = value => /^\[Escreva seu sumário na caixa acima e ele aparecerá aqui automaticamente\]$/i.test(String(value || '').trim());
+      if (isPlaceholder(original)) original = '';
+      if (isPlaceholder(improved)) improved = '';
+
+      const hasOriginal = original.trim().length > 0;
+      const hasImproved = improved.trim().length > 0;
+
+      // A seção do sumário só entra no documento se houver conteúdo próprio do estudante.
+      if (sec.id === 'missao-1' && mode === 'complete' && !hasOriginal && !hasImproved) return;
+      if (sec.id === 'missao-1' && mode === 'improved' && !hasImproved) return;
+
+      // No modo "somente melhorada", não exporta rascunhos sem versão revisada.
+      if (mode === 'improved' && !hasImproved) return;
+
+      bodySections += `<h2>${sec.title}</h2>`;
+      if (mode === 'complete') {
+        bodySections += paragraph('Texto inserido pelo(a) estudante:', original);
+        bodySections += paragraph('Versão melhorada pelo(a) estudante após consulta à IA:', improved);
+      } else {
+        bodySections += paragraph('Versão melhorada:', improved);
+      }
+    });
+
+    const safeTitle = escapeHtml(studentTitle);
+    const safeName = escapeHtml(studentName);
+    const docHtml = `<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${safeTitle}</title>
+<style>
+  @page { size: A4; margin: 2cm; }
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.35;
+    color: #222;
+    text-align: left;
+  }
+  h1 {
+    font-family: Arial, sans-serif;
+    font-size: 16pt;
+    text-align: center;
+    margin: 12pt 0;
+  }
+  h2 {
+    font-family: Arial, sans-serif;
+    font-size: 13pt;
+    font-weight: bold;
+    color: #222;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 4pt;
+    margin: 20pt 0 10pt;
+    page-break-after: avoid;
+  }
+  p {
+    margin: 0;
+    text-align: left;
+  }
+  .cover {
+    text-align: center;
+    margin-bottom: 22pt;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 12pt;
+  }
+  .cover p { text-align: center; margin: 5pt 0; }
+  .student-field {
+    margin: 0 0 14pt;
+    page-break-inside: avoid;
+  }
+  .field-label {
+    font-family: Arial, sans-serif;
+    font-size: 10.5pt;
+    font-weight: bold;
+    margin: 0 0 4pt;
+    text-align: left;
+  }
+  .field-content {
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.35;
+    text-align: left;
+    white-space: pre-wrap;
+    margin: 0;
+  }
+  .empty-field {
+    color: #777;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <p style="font-family:Arial,sans-serif;font-size:10pt;color:#4a5550;">GUIA PRÁTICO DE ESCRITA DE MONOGRAFIA, PROF.ª SUZANA MOTA</p>
+    <h1>${safeTitle}</h1>
+    <p><strong>Autor(a):</strong> ${safeName}</p>
+    <p><strong>Conteúdo exportado:</strong> ${mode === 'complete' ? 'Texto original e versões melhoradas' : 'Somente versões melhoradas'}</p>
+  </div>
+  ${bodySections}
+</body>
+</html>`;
+
+    // O arquivo é HTML compatível com Word, exportado como .doc (não é um pacote .docx nativo).
+    // O conteúdo dos alunos é escapado antes de entrar no documento, evitando
+    // que caracteres ou marcações digitadas sejam interpretados como HTML.
+    const blob = new Blob(['\ufeff', docHtml], { type: 'application/msword;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = mode === 'complete' ? 'TCC_Versao_Completa.doc' : 'TCC_Versao_Melhorada.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+    showToast('Documento Word gerado. Confira o conteúdo e salve sua versão final.');
+  }
+
+  // Scrollspy
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.mission-section, #espinha-dorsal');
+    const navLinks = document.querySelectorAll('.missions-nav a');
+    let currentId = '';
+
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 160;
+      if (window.scrollY >= top) {
+        currentId = sec.getAttribute('id');
+      }
+    });
+
+    if (currentId) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentId) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', loadLocalState);
+</script>
+
+</body>
+</html>
